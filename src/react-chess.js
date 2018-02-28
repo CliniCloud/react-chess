@@ -5,7 +5,13 @@ const resizeAware = require('react-resize-aware')
 const defaultLineup = require('./defaultLineup')
 const pieceComponents = require('./pieces')
 const decode = require('./decode')
-const utils = require('./utils')
+const utils = require('./utils/general')
+const bishop = require('./utils/bishop')
+const rook = require('./utils/rook')
+const knight = require('./utils/knight')
+const pawn = require('./utils/pawn')
+const king = require('./utils/king')
+const queen = require('./utils/queen')
 require('./css/layout/movements.css')
 
 const ResizeAware = resizeAware.default || resizeAware
@@ -42,14 +48,22 @@ const xLabelStyles = Object.assign({
 class Chess extends React.Component {
     constructor(...args) {
         super(...args)
-
+        
         this.els = {}
-        this.state = {}
+        this.state = {
+            turn : args[0].whiteStarts ? 'W' : 'B',
+            attacks:[],
+            nextMovements:[],
+            isPawnChoosing:false,
+            allowMoves:true
+        }
         this.setBoardRef = el => (this.els.board = el)
         this.handleDragStart = this.handleDragStart.bind(this)
         this.handleDragStop = this.handleDragStop.bind(this)
         this.handleDrag = this.handleDrag.bind(this)
         this.handleResize = this.handleResize.bind(this)
+        this.getPawnChoosing = this.getPawnChoosing.bind(this)
+        this.selectPawNewPiece = this.selectPawNewPiece.bind(this)
     }
 
     getSquareColor(x, y) {
@@ -114,7 +128,7 @@ class Chess extends React.Component {
     handleDragStart(evt, drag) {
         evt.preventDefault()
 
-        if (!this.props.allowMoves) {
+        if (!this.props.allowMoves || !this.state.allowMoves) {
             return false
         }
 
@@ -124,52 +138,124 @@ class Chess extends React.Component {
             y: node.offsetTop
         })
         const draggingPiece = utils.findPieceAtPosition(this.props.pieces, dragFrom.pos)
-        console.log('PECA', draggingPiece);
 
         this.showAllowdMovementsByPiece(draggingPiece)
 
-        if (this.props.onDragStart(draggingPiece, dragFrom.pos) === false) {
-            return false
+        if(utils.isPieceTurn(draggingPiece.name, this.state.turn)){
+            if (this.props.onDragStart(draggingPiece, dragFrom.pos) === false) {
+                return false
+            }
+    
+            this.setState({
+                dragFrom,
+                draggingPiece
+            })
+            return evt
+        }else{
+            this.setState({
+                draggingPiece
+            })
         }
-
-        this.setState({
-            dragFrom,
-            draggingPiece
-        })
-        return evt
-    }
-
-    showAllowdMovementsByPiece(piece) {
-        const name = piece.name.toUpperCase()
-        let result;
-        if (name === 'P') {
-            result = utils.getPawnOptions(this.props.pieces, piece)
-        }
-
-        this.setState(result)
     }
 
     handleDragStop(evt, drag) {
         const node = drag.node
-        const {dragFrom, draggingPiece} = this.state
-        const dragTo = this.coordsToPosition({
-            x: node.offsetLeft + drag.x,
-            y: node.offsetTop + drag.y
-        })
+        const {dragFrom, draggingPiece, nextMovements, attacks, turn} = this.state
 
-        this.setState({
-            dragFrom: null,
-            targetTile: null,
-            draggingPiece: null,
-            pieceNextMov: null,
-            attacks: null
-        })
-        if (dragFrom.pos !== dragTo.pos && !utils.isSameTeamPiece(this.props.pieces, draggingPiece, dragTo.pos)) {
-            this.props.onMovePiece(draggingPiece, dragFrom.pos, dragTo.pos)
-            return false
+        if(utils.isPieceTurn(draggingPiece.name, this.state.turn)){
+            const dragTo = this.coordsToPosition({
+                x: node.offsetLeft + drag.x,
+                y: node.offsetTop + drag.y
+            })
+    
+            this.setState({
+                dragFrom: null,
+                targetTile: null,
+                draggingPiece: null,
+                nextMovements: [],
+                attacks: []
+            })
+
+            if (dragFrom.pos !== dragTo.pos && !utils.isSameTeamPiece(this.props.pieces, draggingPiece, dragTo.pos) && 
+                utils.isValidMovement(nextMovements, attacks, dragTo)) {
+
+                    const decoded = decode.fromPieceDecl(draggingPiece.notation)
+                    const qntPlayed = decoded.qntPlayed + 1
+                    
+                    if(utils.hasPawnPieceChange(draggingPiece.name, dragTo)){
+                        this.setState({isPawnChoosing: true, allowMoves:false, draggingPiece, dragTo, qntPlayed})
+                    }
+
+                    this.setState({
+                        turn: turn === 'B' ? 'W' : 'B'
+                    })
+                    
+                    this.props.onMovePiece(draggingPiece, dragFrom.pos, dragTo.pos, qntPlayed )
+                    return false
+            }
+        }else{
+            this.setState({
+                draggingPiece: null,
+                nextMovements: [],
+                attacks: [],
+            })
         }
 
         return true
+    }
+
+    showAllowdMovementsByPiece(piece) {
+        if(utils.isPieceTurn(piece.name, this.state.turn)){
+            const name = piece.name.toUpperCase()
+            let result
+
+            switch (name) {
+                case 'P':
+                    result = pawn.getOptions(this.props.pieces, piece)    
+                    break;
+                case 'N':
+                    result = knight.getOptions(this.props.pieces, piece)    
+                    break;
+                case 'R':
+                    result = rook.getOptions(this.props.pieces, piece)    
+                    break;
+                case 'B':
+                    result = bishop.getOptions(this.props.pieces, piece)    
+                    break;
+                case 'K':
+                    result = king.getOptions(this.props.pieces, piece)    
+                    break;
+                case 'Q':
+                    result = queen.getOptions(this.props.pieces, piece)    
+                    break;
+                default:
+                    result = null    
+            }
+            
+            this.setState(result)
+        }
+    }
+
+    selectPawNewPiece(event, newPiece){
+        event.preventDefault()
+        const {dragTo, draggingPiece, qntPlayed} = this.state
+
+        var newPieceName
+        if(draggingPiece.name === draggingPiece.name.toLowerCase()){
+            newPieceName = newPiece.toLowerCase()
+        }else{
+            newPieceName = newPiece.toUpperCase()
+        }
+
+        this.props.onPawChooseNewPiece(draggingPiece.notation,`${draggingPiece.name}-${qntPlayed}@${dragTo.pos}`, newPieceName)
+        this.setState({
+            isPawnChoosing: false, 
+            allowMoves:true,
+            dragTo: null,
+            draggingPiece:null,
+            qntPlayed:null
+        })
+        
     }
 
     renderLabelText(x, y) {
@@ -183,11 +269,11 @@ class Chess extends React.Component {
         if (isLeftColumn && isBottomRow) {
             return [
                 <span key="blx" style={ xLabelStyles }>
-                                          a
-                                        </span>,
+                    a
+                </span>,
                 <span key="bly" style={ yLabelStyles }>
-                                          1
-                                        </span>
+                    1
+                </span>
             ]
         }
 
@@ -195,17 +281,14 @@ class Chess extends React.Component {
         return <span style={ isLeftColumn ? yLabelStyles : xLabelStyles }>{ label }</span>
     }
 
-    renderNextMovs(x, y) {
-        const {attacks, pieceNextMov} = this.state
-
-        if (pieceNextMov && pieceNextMov.x === x && pieceNextMov.y === (7 - y)) {
-            return <div className="possible-moviments"></div>
-        // } else if (attacks) {
-        //     for (const attack of attacks) {
-        //         if (attack && attack.x === x && attack.y === (7 - y)) {
-        //             return <div className="possible-attacks"></div>
-        //         }
-        //     }
+    renderNextMovements(x, y) {
+        const { nextMovements } = this.state
+        if(nextMovements){
+            for(const item of nextMovements){
+                if(item.x === x && item.y === (7 - y) ){
+                    return <div className="possible-moviments"></div>
+                }
+            }
         }
         return null
     }
@@ -222,8 +305,36 @@ class Chess extends React.Component {
         return (<Piece isMoving={ isMoving } x={ x } y={ y } />)
     }
 
+    getPawnChoosing(children){
+        const Queen = pieceComponents['Q']
+        const King = pieceComponents['K']
+        const Knight = pieceComponents['N']
+        const Rook = pieceComponents['R']
+
+        return (
+            <div>
+                <div style={{opacity:'0.2'}}>
+                    { children }
+                </div>
+                <div className="piece-chooser">
+                    <a href="/" className="link-piece-chooser" onClick={e => this.selectPawNewPiece(e, 'Q')}>
+                        <Queen menu={true}/>
+                    </a>
+                    <a href="/" className="link-piece-chooser" onClick={e => this.selectPawNewPiece(e, 'N')}>
+                        <Knight menu={true}/>
+                    </a>
+                    <a href="/" className="link-piece-chooser" onClick={e => this.selectPawNewPiece(e, 'R')}>
+                        <Rook menu={true}/>
+                    </a>
+                    <a href="/" className="link-piece-chooser" onClick={e => this.selectPawNewPiece(e, 'K')}>
+                        <King menu={true}/>
+                    </a>
+                </div>
+            </div>)
+    }
+
     render() {
-        const {targetTile, draggingPiece, boardSize} = this.state
+        const {targetTile, draggingPiece, boardSize, isPawnChoosing} = this.state
 
         const tiles = []
         for (let y = 0; y < 8; y++) {
@@ -239,7 +350,7 @@ class Chess extends React.Component {
                 tiles.push(
                     <div key={ `rect-${x}-${y}` } style={ styles }>
                       { this.renderLabelText(x, y) }
-                      { this.renderNextMovs(x, y) }
+                      { this.renderNextMovements(x, y) }
                     </div>
                 )
             }
@@ -265,13 +376,14 @@ class Chess extends React.Component {
 
         return (
             <ResizeAware ref={ this.setBoardRef } onlyEvent onResize={ this.handleResize } style={ boardStyles }>
-              { children }
+                {(!isPawnChoosing && children) || this.getPawnChoosing(children)}
             </ResizeAware>
         )
     }
 }
 
 Chess.propTypes = {
+    whiteStarts: PropTypes.bool,
     allowMoves: PropTypes.bool,
     highlightTarget: PropTypes.bool,
     drawLabels: PropTypes.bool,
@@ -279,15 +391,18 @@ Chess.propTypes = {
     darkSquareColor: PropTypes.string,
     onMovePiece: PropTypes.func,
     onDragStart: PropTypes.func,
+    onPawChooseNewPiece: PropTypes.func,
     pieces: PropTypes.arrayOf(PropTypes.string)
 }
 
 Chess.defaultProps = {
+    whiteStarts: false,
     allowMoves: true,
     highlightTarget: true,
     drawLabels: true,
     onMovePiece: noop,
     onDragStart: noop,
+    onPawChooseNewPiece: noop,
     lightSquareColor: '#f0d9b5',
     darkSquareColor: '#b58863',
     pieces: getDefaultLineup()

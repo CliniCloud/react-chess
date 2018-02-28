@@ -1,0 +1,20 @@
+const bishop = require('./bishop')
+const rook = require('./rook')
+
+module.exports.getOptions = function(pieces, piece){
+    var nextMovements = []
+    var attacks = []
+
+    const bishopResult = bishop.getOptions(pieces, piece)
+    nextMovements = nextMovements.concat(bishopResult.nextMovements)
+    attacks = attacks.concat(bishopResult.attacks)
+
+    const rookResult = rook.getOptions(pieces, piece)
+    nextMovements = nextMovements.concat(rookResult.nextMovements)
+    attacks = attacks.concat(rookResult.attacks)
+
+    return {
+        nextMovements,
+        attacks
+    }
+}

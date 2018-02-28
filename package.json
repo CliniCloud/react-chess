@@ -59,10 +59,10 @@
     "gh-pages-deploy": "^0.4.2",
     "jest": "^21.2.1",
     "prettier": "^1.8.2",
-    "react": "^16.1.0",
+    "react": "^16.2.0",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.1.0",
-    "react-scripts": "^1.0.17",
+    "react-scripts": "^1.1.1",
     "react-test-renderer": "^16.0.0",
     "rimraf": "^2.6.2",
     "webpack": "^3.8.1"

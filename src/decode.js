@@ -2,10 +2,11 @@ const charCodeOffset = 97
 
 module.exports = {
   fromPieceDecl: pos => {
-    const [piece, square] = pos.split('@')
+    const [pieces, square] = pos.split('@')
+    const [piece, qntPlayed] = pieces.split('-')
     const x = square.toLowerCase().charCodeAt(0) - charCodeOffset
     const y = Number(square[1]) - 1
-    return {x, y, piece, square}
+    return {x, y, piece, square, qntPlayed: parseInt(qntPlayed, 0)}
   },
 
   charCodeOffset
