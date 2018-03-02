@@ -1,9 +1,10 @@
 const general = require('./general')
 const decode = require('../decode')
+const pawn = require('./pawn')
 
-module.exports.getOptions = function(pieces, piece) {
+module.exports.getOptions = function(pieces, piece, enemyPossibleMov) {
     const position = decode.fromPieceDecl(piece.notation)
-    const nextMovements = []
+    var nextMovements = []
     const attacks = []
 
     for (let col = -1; col < 2; col++) {
@@ -30,7 +31,31 @@ module.exports.getOptions = function(pieces, piece) {
                 }
             }
         }
+    }
 
+    //remove from all possible enemy movements and enemy pawn attacks from king movements
+    if(enemyPossibleMov && enemyPossibleMov.length){
+        const nextMovsWoEnemyMovs = nextMovements
+        for(const index in nextMovements){
+            const nextMom = nextMovements[index]
+
+            for(const enemy of enemyPossibleMov){
+                const name = enemy.name.toUpperCase()
+                for(const enemyMov of enemy.nextMovements){
+                    if(name !== 'P' &&  enemyMov.x === nextMom.x && enemyMov.y === nextMom.y ){
+                        nextMovsWoEnemyMovs.splice(index,1);
+                    }
+                }
+            }
+
+            for(const pawnAttack of pawn.getEnemyPawnsAttacks(pieces, general.whatIsEnemyTeam(position.piece))){
+                if(pawnAttack.x === nextMom.x && pawnAttack.y === nextMom.y){
+                    nextMovsWoEnemyMovs.splice(index,1);
+                }
+            }
+        }
+
+        nextMovements = nextMovsWoEnemyMovs
     }
 
     return {

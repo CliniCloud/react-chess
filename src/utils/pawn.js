@@ -1,10 +1,10 @@
 const general = require('./general')
 const decode = require('../decode')
 
-module.exports.getOptions = function(pieces, piece, isFirstMovemnt) {
+module.exports.getOptions = function(pieces, piece, threateningPos) {
     const position = decode.fromPieceDecl(piece.notation)
-    const nextMovements = []
-    const attacks = []
+    let nextMovements = []
+    let attacks = []
     const lengthRows = position.qntPlayed === 0 ? 2 : 1 //first time pawn may move two spaces
     const row = piece.name === piece.name.toLowerCase() ? position.y - 1 : position.y + 1 //row will change depending wich team
 
@@ -32,9 +32,48 @@ module.exports.getOptions = function(pieces, piece, isFirstMovemnt) {
         }
     }
 
+    if(threateningPos){
+        const threathPos = decode.fromPieceDecl(threateningPos)
+        nextMovements = []
+        const newAttacks = []
+        for(const attack of attacks){
+            if(attack.x === threathPos.x && attack.y === threathPos.y){
+                newAttacks.push(attack)
+                break 
+            }
+        }
+        attacks = newAttacks
+    }
+
     return {
         nextMovements,
         attacks
     }
 
+}
+
+module.exports.getEnemyPawnsAttacks = function(pieces, enemyTeam){
+    const attackerPositions = []
+    for (const piece of pieces) {
+        let piecePos, rowIndex
+        const enemyName = piece[0].toUpperCase()
+        
+        if(enemyName === 'P'){
+            if (enemyTeam === 'W' && piece[0] === enemyName) {
+                piecePos = piece
+                rowIndex = +1
+            } else if (enemyTeam === 'B' && piece[0] === piece[0].toLowerCase()) {
+                piecePos = piece
+                rowIndex = -1
+            }
+    
+            if (piecePos) {
+                const attacker = decode.fromPieceDecl(piecePos)
+                attackerPositions.push(Object.assign({}, attacker, {x:attacker.x + 1 , y:  attacker.y + rowIndex }))
+                attackerPositions.push(Object.assign({}, attacker, {x:attacker.x - 1 , y:  attacker.y + rowIndex}))
+            }
+        }
+    }
+
+    return attackerPositions
 }

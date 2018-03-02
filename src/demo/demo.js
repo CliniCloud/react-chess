@@ -28,14 +28,11 @@ class Demo extends React.PureComponent {
   }
 
   onPawChooseNewPiece(oldPiece, newPiece, newPieceName){
-      console.log('pieces', this.state.pieces);
-      console.log('oldPiece', oldPiece);
-      console.log('newPiece', newPiece);
 
      const newPieces =  this.state.pieces
       .map((curr, index) => {
           if(curr === newPiece){
-              return newPiece.replace(newPiece[0],newPieceName)
+              return newPiece.replace(newPiece[0], newPieceName)
           }
           return curr
       }).filter(Boolean)

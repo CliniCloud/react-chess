@@ -2,20 +2,24 @@
 const React = require('react')
 
 module.exports = Piece => props => {
-    const {onMouseDown, onMouseUp, onTouchEnd, onTouchStart, style, isMoving, fill} = props
+    const {onMouseDown, onMouseUp, onTouchEnd, onTouchStart, style, isMoving, fill, x, menu, threatened} = props
     const y = 7 - props.y
     let styles
 
-    if (!props.menu) {
+    if (!menu) {
         styles = Object.assign({}, style, {
             position: 'absolute',
-            left: `${props.x * 12.5}%`,
+            left: `${x * 12.5}%`,
             top: `${y * 12.5}%`,
             width: '12.5%',
             height: '12.5%',
             textAlign: 'center',
             zIndex: isMoving ? 1000 : undefined
         })
+
+        if(threatened){
+            styles.boxShadow =  'inset 0 0 80px 8px #d85000'
+        }
     } else {
         styles = {
             display: 'flex',
