@@ -9,5 +9,7 @@ module.exports = {
     return {x, y, piece, square, qntPlayed: parseInt(qntPlayed, 0)}
   },
 
+  fromPosDecl: (x, y) => `${String.fromCharCode(charCodeOffset + x )}${y + 1}`,
+
   charCodeOffset
 }

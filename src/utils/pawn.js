@@ -1,7 +1,7 @@
 const general = require('./general')
 const decode = require('../decode')
 
-module.exports.getOptions = function(pieces, piece, threateningPos) {
+ const getOptions = function(pieces, piece, threateningPos) {
     const position = decode.fromPieceDecl(piece.notation)
     let nextMovements = []
     let attacks = []
@@ -34,7 +34,6 @@ module.exports.getOptions = function(pieces, piece, threateningPos) {
 
     if(threateningPos){
         const threathPos = decode.fromPieceDecl(threateningPos)
-        nextMovements = []
         const newAttacks = []
         for(const attack of attacks){
             if(attack.x === threathPos.x && attack.y === threathPos.y){
@@ -52,7 +51,7 @@ module.exports.getOptions = function(pieces, piece, threateningPos) {
 
 }
 
-module.exports.getEnemyPawnsAttacks = function(pieces, enemyTeam){
+const getEnemyPawnsAttacks = (pieces, enemyTeam) => {
     const attackerPositions = []
     for (const piece of pieces) {
         let piecePos, rowIndex
@@ -76,4 +75,9 @@ module.exports.getEnemyPawnsAttacks = function(pieces, enemyTeam){
     }
 
     return attackerPositions
+}
+
+module.exports = {
+    getOptions,
+    getEnemyPawnsAttacks
 }

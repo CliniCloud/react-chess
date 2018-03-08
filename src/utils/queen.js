@@ -1,7 +1,7 @@
 const bishop = require('./bishop')
 const rook = require('./rook')
 
-module.exports.getOptions = function(pieces, piece, threateningPos){
+ const getOptions = (pieces, piece, threateningPos) =>{
     let nextMovements = []
     let attacks = []
 
@@ -17,4 +17,9 @@ module.exports.getOptions = function(pieces, piece, threateningPos){
         nextMovements,
         attacks
     }
+}
+
+
+module.exports = {
+    getOptions
 }

@@ -2,9 +2,9 @@ const general = require('./general')
 const decode = require('../decode')
 const pawn = require('./pawn')
 
-module.exports.getOptions = function(pieces, piece, enemyPossibleMov) {
+const getOptions = (pieces, piece, enemyPossibleMov) => {
     const position = decode.fromPieceDecl(piece.notation)
-    var nextMovements = []
+    let nextMovements = []
     const attacks = []
 
     for (let col = -1; col < 2; col++) {
@@ -62,4 +62,8 @@ module.exports.getOptions = function(pieces, piece, enemyPossibleMov) {
         nextMovements,
         attacks
     }
+}
+
+module.exports = {
+    getOptions
 }
