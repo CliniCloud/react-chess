@@ -1,10 +1,20 @@
 const general = require('./general')
 const decode = require('../decode')
 
+const isRangeMatch = (range, x, y) => {
+    for(const item of range){
+        if(item.x === x && item.y === y){
+            return true
+        }
+    }
+
+    return false
+}
+
 const getOptions = function(pieces, piece, threateningPos) {
-    const position = decode.fromPieceDecl(piece.notation)
+    const position = piece.x ? piece : decode.fromPieceDecl(piece.notation)
     const allowedMovements = [{x:1,y:2}, {x:-1,y:2}, {x:2,y:1}, {x:-2,y:1}, {x:2,y:-1}, {x:-2,y:-1}, {x:1,y:-2}, {x:-1,y:-2}]
-    let nextMovements = []
+    const nextMovements = []
     let attacks = []
 
     for (let col = -2; col < 3; col++) {
@@ -42,16 +52,6 @@ const getOptions = function(pieces, piece, threateningPos) {
     }
 
     return {nextMovements, attacks}
-}
-
-const isRangeMatch = (range, x, y) => {
-    for(const item of range){
-        if(item.x === x && item.y === y){
-            return true
-        }
-    }
-
-    return false
 }
 
 module.exports = {

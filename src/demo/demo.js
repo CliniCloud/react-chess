@@ -4,50 +4,59 @@ const Chess = require('../../src/react-chess')
 require('./demo.css')
 
 class Demo extends React.PureComponent {
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.state = {pieces: Chess.getDefaultLineup()}
-    this.handleMovePiece = this.handleMovePiece.bind(this)
-    this.onPawChooseNewPiece = this.onPawChooseNewPiece.bind(this)
-  }
-
-  handleMovePiece(piece, fromSquare, toSquare, qntPlayed) {
-    const newPieces = this.state.pieces
-      .map((curr, index) => {
-        if (piece.index === index) {
-          return `${piece.name}-${qntPlayed}@${toSquare}`
-        } else if (curr.indexOf(toSquare) === 4) {
-          return false // To be removed from the board
+        this.state = {
+            pieces: Chess.getDefaultLineup()
         }
-        return curr
-      })
-      .filter(Boolean)
+        this.handleMovePiece = this.handleMovePiece.bind(this)
+        this.onPawChooseNewPiece = this.onPawChooseNewPiece.bind(this)
+    }
 
-    this.setState({pieces: newPieces})
-  }
+    handleMovePiece(piece, fromSquare, toSquare, qntPlayed, castlingRookPos) {
 
-  onPawChooseNewPiece(oldPiece, newPiece, newPieceName){
+        const newPieces = this.state.pieces
+            .map(curr => {
+                if (curr.substr(curr.indexOf('@') + 1) === fromSquare) {
+                    return `${piece.name}-${qntPlayed}@${toSquare}`
+                } else if (curr.indexOf(toSquare) > -1) {
+                    return false // To be removed from the board
+                }else if(castlingRookPos && curr === castlingRookPos.notation){
+                    return `${castlingRookPos.name}-${castlingRookPos.qntPlayed + 1}@${castlingRookPos.nextPos}`
+                }
+                return curr
+            })
+            .filter(Boolean)
+            
+        this.setState({
+            pieces: newPieces
+        })
+    }
 
-     const newPieces =  this.state.pieces
-      .map((curr, index) => {
-          if(curr === newPiece){
-              return newPiece.replace(newPiece[0], newPieceName)
-          }
-          return curr
-      }).filter(Boolean)
+    onPawChooseNewPiece(oldPiece, newPiece, newPieceName) {
 
-      this.setState({pieces: newPieces})
-  } 
+        const newPieces = this.state.pieces
+            .map(curr => {
+                if (curr === newPiece) {
+                    return newPiece.replace(newPiece[0], newPieceName)
+                }
+                return curr
+            }).filter(Boolean)
 
-  render() {
-    const {pieces} = this.state
-    return (
-      <div className="demo">
-        <Chess pieces={pieces} onMovePiece={this.handleMovePiece} onPawChooseNewPiece={this.onPawChooseNewPiece} />
-      </div>
-    )
-  }
+        this.setState({
+            pieces: newPieces
+        })
+    }
+
+    render() {
+        const {pieces} = this.state
+        return (
+            <div className="demo">
+              <Chess pieces={ pieces } onMovePiece={ this.handleMovePiece } onPawChooseNewPiece={ this.onPawChooseNewPiece } />
+            </div>
+        )
+    }
 }
 
 module.exports = Demo

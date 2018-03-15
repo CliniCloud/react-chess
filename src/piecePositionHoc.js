@@ -6,7 +6,12 @@ module.exports = Piece => props => {
     const y = 7 - props.y
     let styles
 
-    if (!menu) {
+    if (menu) {
+        styles = {
+            display: 'flex',
+            justifyContent: 'center'
+        }
+    } else {
         styles = Object.assign({}, style, {
             position: 'absolute',
             left: `${x * 12.5}%`,
@@ -19,11 +24,6 @@ module.exports = Piece => props => {
 
         if(threatened){
             styles.boxShadow =  'inset 0 0 80px 8px #d85000'
-        }
-    } else {
-        styles = {
-            display: 'flex',
-            justifyContent: 'center'
         }
     }
 

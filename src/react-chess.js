@@ -4,9 +4,10 @@ const Draggable = require('react-draggable')
 const resizeAware = require('react-resize-aware')
 const defaultLineup = require('./defaultLineup')
 const pieceComponents = require('./pieces')
-const utils = require('./utils/general')
+const general = require('./utils/general')
 const decode = require('./decode')
 const predictions = require('./utils/predictions')
+const endGame = require('./utils/endGame')
 
 require('./css/layout/movements.css')
 
@@ -52,7 +53,9 @@ class Chess extends React.Component {
             attacks:[],
             nextMovements:[],
             isPawnChoosing:false,
-            allowMoves:true
+            allowMoves:true,
+            isChequemate:false,
+            isStalemate:false
         }
         this.setBoardRef = el => (this.els.board = el)
         this.handleDragStart = this.handleDragStart.bind(this)
@@ -68,6 +71,10 @@ class Chess extends React.Component {
         if(nextState.isPawChoseNewPiece){
             const enemyThreathing = predictions.isEnemyThreateningKing(nextProps.pieces, nextState.turn)
             this.setState(Object.assign({isPawChoseNewPiece:false}, enemyThreathing))
+        }
+
+        if(nextProps.pieces !== this.props.pieces){
+            this.setState(endGame.isGameFinished(nextProps.pieces, nextState.turn))
         }
     }
 
@@ -143,12 +150,12 @@ class Chess extends React.Component {
             y: node.offsetTop
         })
         
-        const draggingPiece = utils.findPieceAtPosition(this.props.pieces, dragFrom.pos)
+        const draggingPiece = general.findPieceAtPosition(this.props.pieces, dragFrom.pos)
 
         if(draggingPiece){
             this.showAllowdMovementsByPiece(draggingPiece)
     
-            if(utils.isPieceTurn(draggingPiece.name, this.state.turn)){
+            if(general.isPieceTurn(draggingPiece.name, this.state.turn)){
                 if (this.props.onDragStart(draggingPiece, dragFrom.pos) === false) {
                     return false
                 }
@@ -157,13 +164,14 @@ class Chess extends React.Component {
                     dragFrom,
                     draggingPiece
                 })
-                return evt
             }else{
                 this.setState({
                     draggingPiece
                 })
             }
         }
+
+        return evt
     }
 
     handleDragStop(evt, drag) {
@@ -171,7 +179,7 @@ class Chess extends React.Component {
         const { dragFrom, draggingPiece, nextMovements, attacks, turn} = this.state
         const { pieces } = this.props
 
-        if(draggingPiece && utils.isPieceTurn(draggingPiece.name, turn)){
+        if(draggingPiece && general.isPieceTurn(draggingPiece.name, turn)){
             const dragTo = this.coordsToPosition({
                 x: node.offsetLeft + drag.x,
                 y: node.offsetTop + drag.y
@@ -185,18 +193,18 @@ class Chess extends React.Component {
                 attacks: []
             })
             
-            if (dragFrom.pos !== dragTo.pos && !utils.isSameTeamPiece(pieces, draggingPiece, dragTo.pos) && 
-                utils.isValidMovement(nextMovements, attacks, dragTo)) {
-
+            if (dragFrom.pos !== dragTo.pos && !general.isSameTeamPiece(pieces, draggingPiece, dragTo.pos)) {
+                const movFound = general.isValidMovement(nextMovements, attacks, dragTo)
+                if(movFound){
                     const decoded = decode.fromPieceDecl(draggingPiece.notation)
                     const qntPlayed = decoded.qntPlayed + 1
                     const newTurn = turn === 'B' ? 'W' : 'B'
 
-                    if(utils.hasPawnPieceChange(draggingPiece.name, dragTo)){
+                    if(general.hasPawnPieceChange(draggingPiece.name, dragTo)){
                         this.setState({isPawnChoosing: true, allowMoves:false, draggingPiece, dragTo, qntPlayed})
                     }
 
-                    this.props.onMovePiece(draggingPiece, dragFrom.pos, dragTo.pos, qntPlayed )
+                    this.props.onMovePiece(draggingPiece, dragFrom.pos, dragTo.pos, qntPlayed, movFound.rookPos )
                     
                     this.setState({
                         turn: newTurn,
@@ -204,6 +212,7 @@ class Chess extends React.Component {
                     })
                     
                     return false
+                }
             }
         }else{
             this.setState({
@@ -218,22 +227,22 @@ class Chess extends React.Component {
 
     showAllowdMovementsByPiece(piece) {
         const { turn, enemysPossibleMov, threateningPos } = this.state
-        if(utils.isPieceTurn(piece.name, turn)){
+        if(general.isPieceTurn(piece.name, turn)){
             const result = predictions.getOptionsByName(this.props.pieces, piece, enemysPossibleMov, threateningPos)
             if(result){
                 const movs =  []
                 const attacks =  []
                 
                 for(const nextMov of result.nextMovements){
-                    const p  = predictions.willTheKingBeThreating(this.props.pieces, piece, nextMov)
-                    if(!p || !p.isKingThreatened){
+                    const check  = predictions.willTheKingBeThreating(this.props.pieces, piece, nextMov)
+                    if(!check || !check.isKingThreatened){
                         movs.push(nextMov)
                     }
                 }
 
                 for(const attack of result.attacks){
-                    const p  = predictions.willTheKingBeThreating(this.props.pieces, piece, attack)
-                    if(!p || !p.isKingThreatened){
+                    const check  = predictions.willTheKingBeThreating(this.props.pieces, piece, attack)
+                    if(!check || !check.isKingThreatened){
                         attacks.push(attack)
                     }
                 }
@@ -320,10 +329,10 @@ class Chess extends React.Component {
     }
 
     getPawnChoosing(children){
-        const Queen = pieceComponents['Q']
-        const Bishop = pieceComponents['B']
-        const Knight = pieceComponents['N']
-        const Rook = pieceComponents['R']
+        const Queen = pieceComponents.Q
+        const Bishop = pieceComponents.B
+        const Knight = pieceComponents.N
+        const Rook = pieceComponents.R
 
         return (
             <div>
@@ -331,32 +340,71 @@ class Chess extends React.Component {
                     { children }
                 </div>
                 <div className="piece-chooser">
-                    <a href="/" className="link-piece-chooser" onClick={e => this.selectPawNewPiece(e, 'Q')}>
+                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'Q')}>
                         <Queen menu={true}/>
                     </a>
-                    <a href="/" className="link-piece-chooser" onClick={e => this.selectPawNewPiece(e, 'N')}>
+                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'N')}>
                         <Knight menu={true}/>
                     </a>
-                    <a href="/" className="link-piece-chooser" onClick={e => this.selectPawNewPiece(e, 'R')}>
+                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'R')}>
                         <Rook menu={true}/>
                     </a>
-                    <a href="/" className="link-piece-chooser" onClick={e => this.selectPawNewPiece(e, 'B')}>
+                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'B')}>
                         <Bishop menu={true}/>
                     </a>
                 </div>
             </div>)
     }
 
-    didGameEnd(){
-        // const { attacks , isKingThreatened, turn } = this.state
+    didGameEnd(children){
+        const { isChequemate, isStalemate, isImpossibleChequemate, turn } = this.state
 
-        // if(isKingThreatened){
+        const wrapperStyle = {
+            display:'flex',
+            justifyContent:'center',
+            width: '100%',
+            position: 'absolute',
+            top:'45%',
+            fontSize:'45px',
+            color:'#0d8dcb'
+        }
+        if(isChequemate){
+            return (
+                <div>
+                    <div style={{opacity:'0.1'}}>
+                        {children}
+                    </div>
+                    <div style={wrapperStyle}>
+                        <h2>Chequemate from <span style={{color:turn === 'B' ? '#d8d8d8' : 'black'}}>{turn === 'B' ? 'White' : 'Black'}</span></h2>
+                    </div>
+                </div>)
+        }else if(isStalemate){
+            return (
+                <div>
+                    <div style={{opacity:'0.2'}}>
+                        {children}
+                    </div>
+                    <div style={wrapperStyle}>
+                        <h2>Stalemate from <span style={{color:turn === 'B' ? '#d8d8d8' : 'black'}}>{turn === 'B' ? 'White' : 'Black'}</span></h2>
+                    </div>
+                </div>)
+        }else if(isImpossibleChequemate){
+            return (
+                <div>
+                    <div style={{opacity:'0.2'}}>
+                        {children}
+                    </div>
+                    <div style={wrapperStyle}>
+                        <h2>The game has finished in a draw</h2>
+                    </div>
+                </div>)
+        }
 
-        // }
+        return null
     }
 
     render() {
-        const {targetTile, draggingPiece, boardSize, isPawnChoosing} = this.state
+        const {targetTile, draggingPiece, boardSize, isPawnChoosing, isChequemate, isStalemate, isImpossibleChequemate} = this.state
 
         const tiles = []
         for (let y = 0; y < 8; y++) {
@@ -377,8 +425,8 @@ class Chess extends React.Component {
                 )
             }
         }
-        const pieces = this.props.pieces.map((decl, i) => {
-            const isMoving = draggingPiece && i === draggingPiece.index
+        const pieces = this.props.pieces.map( decl => {
+            const isMoving = draggingPiece && draggingPiece.notation === decl
             const {x, y, piece} = decode.fromPieceDecl(decl)
             const Piece = pieceComponents[piece]
             return (
@@ -388,7 +436,18 @@ class Chess extends React.Component {
             )
         })
 
-        const children = tiles.concat(pieces)
+        let content = tiles.concat(pieces)
+
+        if(isPawnChoosing){
+            content = this.getPawnChoosing(content)
+        }else if(isChequemate){
+            content = this.didGameEnd(content)
+        }else if(isStalemate){
+            content = this.didGameEnd(content)
+        }else if(isImpossibleChequemate){
+            content = this.didGameEnd(content)
+        }
+
         const boardStyles = {
             position: 'relative',
             overflow: 'hidden',
@@ -398,7 +457,7 @@ class Chess extends React.Component {
 
         return (
             <ResizeAware ref={ this.setBoardRef } onlyEvent onResize={ this.handleResize } style={ boardStyles }>
-                {(!isPawnChoosing && children) || this.getPawnChoosing(children)}
+                {content}
             </ResizeAware>
         )
     }

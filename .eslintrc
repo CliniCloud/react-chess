@@ -1,7 +1,41 @@
 {
-  "extends": ["sanity", "prettier", "plugin:react/recommended"],
-  "plugins": ["react"],
-  "env": {"node": true, "browser": true},
-  "parserOptions": {"ecmaVersion": 2017, "ecmaFeatures": {"jsx": true}},
-  "rules": {"strict": 0, "no-return-assign": 0, "max-depth": [3, 6]}
+    "extends": [
+        "sanity",
+        "prettier",
+        "plugin:react/recommended"
+    ],
+    "plugins": [
+        "react"
+    ],
+    "env": {
+        "node": true,
+        "browser": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "strict": 0,
+        "no-return-assign": 0,
+        "max-depth": [
+            0,
+            0
+        ],
+        "complexity": [ 1, 5 ],
+        "max-params": [
+            "error",
+            {
+                "max": 6
+            }
+        ],
+        "no-labels":[
+            "error",
+            {
+                "allowLoop": true 
+            }
+        ]
+    }
 }

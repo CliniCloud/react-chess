@@ -2,8 +2,8 @@ const general = require('./general')
 const decode = require('../decode')
 
  const getOptions = function(pieces, piece, threateningPos) {
-    const position = decode.fromPieceDecl(piece.notation)
-    let nextMovements = []
+    const position = piece.x ? piece : decode.fromPieceDecl(piece.notation)
+    const nextMovements = []
     let attacks = []
     const lengthRows = position.qntPlayed === 0 ? 2 : 1 //first time pawn may move two spaces
     const row = piece.name === piece.name.toLowerCase() ? position.y - 1 : position.y + 1 //row will change depending wich team
@@ -54,7 +54,8 @@ const decode = require('../decode')
 const getEnemyPawnsAttacks = (pieces, enemyTeam) => {
     const attackerPositions = []
     for (const piece of pieces) {
-        let piecePos, rowIndex
+        let piecePos
+        let rowIndex
         const enemyName = piece[0].toUpperCase()
         
         if(enemyName === 'P'){
