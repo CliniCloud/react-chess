@@ -120,11 +120,12 @@ const isEnemyThreateningKing = (pieces, currTeam) => {
 /**
  * Check if changing the piece's position will leave the king threatened
  * @param {array} pieces string array
- * @param {object} piece piece object
+ * @param {object} piece decoded piece object
  * @param {object} newPosition piece new position object
  */
 const willTheKingBeThreating = (pieces, piece, newPosition) => {
     let replacedEnemy = false
+    let kinsIsDead = false
     const newMovPos = decode.fromPosDecl(newPosition.x, newPosition.y)
     const newPieces = pieces.map(( item, index) => {
         const pos = item.substr(item.indexOf('@') + 1)    
@@ -132,6 +133,8 @@ const willTheKingBeThreating = (pieces, piece, newPosition) => {
             return false
         }else if(pos === newMovPos){
             replacedEnemy = true
+            kinsIsDead = item.toUpperCase().indexOf('K') > -1
+            console.log('piece', piece);
             return `${piece.notation.substr(0, item.indexOf('@'))}@${pos}`
         }
         return item
@@ -141,7 +144,10 @@ const willTheKingBeThreating = (pieces, piece, newPosition) => {
         newPieces.push(`${piece.name}-0@${newMovPos}`)
     }
 
-    return isEnemyThreateningKing(newPieces, general.whatIsMyTeam(piece.name))
+    let enemyThreat = isEnemyThreateningKing(newPieces, general.whatIsMyTeam(piece.name))
+    enemyThreat = Object.assign(enemyThreat, {kinsIsDead})
+
+    return  enemyThreat
 }
 
 const getEnemyNextMovs = (pieces, enemyTeamName)=> {
@@ -169,6 +175,7 @@ const getEnemyNextMovs = (pieces, enemyTeamName)=> {
 
 module.exports = {
     getOptionsByName,
+    getKingPos,
     isEnemyThreateningKing,
     willTheKingBeThreating,
     getEnemyNextMovs

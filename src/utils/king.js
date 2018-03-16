@@ -64,33 +64,33 @@ const getOptions = (pieces, piece, enemyPossibleMov) => {
 
     //remove from all possible enemy movements and enemy pawn attacks from king movements
     if (enemyPossibleMov && enemyPossibleMov.length) {
-        let nextMovsWoEnemyMovs = nextMovements.slice(0)
         mainLoop:
-        for(let index = 0; index < nextMovements.length; index ++){
+        for(let index = nextMovements.length -1; index >= 0; index --){
             const nextMom = nextMovements[index]
+            enemyLoop:
             for(const enemy of enemyPossibleMov){
                 const name = enemy.name.toUpperCase()
                 for (const enemyMov of enemy.nextMovements) {
                     if (name !== 'P' && enemyMov.x === nextMom.x && enemyMov.y === nextMom.y) {
-                        nextMovsWoEnemyMovs.splice(index, 1);
-                        if (!nextMovsWoEnemyMovs.length) {
+                        nextMovements.splice(index, 1);
+                        if (!nextMovements.length) {
                             break mainLoop
                         }
+                        break enemyLoop;
                     }
                 }
             }
 
             for (const pawnAttack of pawn.getEnemyPawnsAttacks(pieces, general.whatIsEnemyTeam(position.piece))) {
                 if (pawnAttack.x === nextMom.x && pawnAttack.y === nextMom.y) {
-                    nextMovsWoEnemyMovs.splice(index, 1);
-                    if (!nextMovsWoEnemyMovs.length) {
+                    nextMovements.splice(index, 1);
+                    if (!nextMovements.length) {
                         break mainLoop
                     }
                 }
             }
         }
 
-        nextMovements = nextMovsWoEnemyMovs
     }
 
     return {

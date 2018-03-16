@@ -19,17 +19,23 @@ module.exports = Piece => props => {
             width: '12.5%',
             height: '12.5%',
             textAlign: 'center',
-            zIndex: isMoving ? 1000 : undefined
+            zIndex: isMoving ? 1000 : undefined,
+            boxShadow: threatened ? 'inset 0 0 80px 8px #d85000' : undefined
         })
 
-        if(threatened){
-            styles.boxShadow =  'inset 0 0 80px 8px #d85000'
-        }
+    }
+    // { (fill && <Piece size="85%" fill={ fill } />) || <Piece size="85%" /> }
+    if (fill) {
+        return (
+            <div onMouseDown={ onMouseDown } onMouseUp={ onMouseUp } onTouchEnd={ onTouchEnd } onTouchStart={ onTouchStart } style={ styles }>
+              <Piece size="85%" fill={ fill } />
+            </div>
+        )
     }
 
     return (
         <div onMouseDown={ onMouseDown } onMouseUp={ onMouseUp } onTouchEnd={ onTouchEnd } onTouchStart={ onTouchStart } style={ styles }>
-          { (fill && <Piece size="85%" fill={ fill } />) || <Piece size="85%" /> }
+            <Piece size="85%" />
         </div>
     )
 

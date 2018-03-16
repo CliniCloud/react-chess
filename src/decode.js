@@ -6,7 +6,7 @@ module.exports = {
     const [piece, qntPlayed] = pieces.split('-')
     const x = square.toLowerCase().charCodeAt(0) - charCodeOffset
     const y = Number(square[1]) - 1
-    return {x, y, piece, square, qntPlayed: parseInt(qntPlayed, 0), name:piece, notation:pos}
+    return {x, y, piece, square, qntPlayed: parseInt(qntPlayed, 0), name:piece, notation:pos, position:square}
   },
 
   fromPosDecl: (x, y) => `${String.fromCharCode(charCodeOffset + x )}${y + 1}`,

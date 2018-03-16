@@ -54,27 +54,35 @@ class Chess extends React.Component {
             nextMovements:[],
             isPawnChoosing:false,
             allowMoves:true,
-            isChequemate:false,
-            isStalemate:false
+            isCheckmate:false,
+            isStalemate:false,
+            shouldTestGameEnded:false
         }
         this.setBoardRef = el => (this.els.board = el)
         this.handleDragStart = this.handleDragStart.bind(this)
         this.handleDragStop = this.handleDragStop.bind(this)
         this.handleDrag = this.handleDrag.bind(this)
         this.handleResize = this.handleResize.bind(this)
-        this.getPawnChoosing = this.getPawnChoosing.bind(this)
         this.selectPawNewPiece = this.selectPawNewPiece.bind(this)
-        this.didGameEnd = this.didGameEnd.bind(this)
     }
 
     componentWillUpdate(nextProps, nextState){
         if(nextState.isPawChoseNewPiece){
             const enemyThreathing = predictions.isEnemyThreateningKing(nextProps.pieces, nextState.turn)
-            this.setState(Object.assign({isPawChoseNewPiece:false}, enemyThreathing))
-        }
-
-        if(nextProps.pieces !== this.props.pieces){
+            this.setState(Object.assign({isPawChoseNewPiece:false, shouldTestGameEnded:true}, enemyThreathing))
+        }else if(nextProps.pieces !== this.props.pieces){
             this.setState(endGame.isGameFinished(nextProps.pieces, nextState.turn))
+        }else if(nextState.shouldTestGameEnded){
+            const check = {
+                isKingThreatened:nextState.isKingThreatened, 
+                threateningPos:nextState.threateningPos
+            }
+
+            const newState = Object.assign( 
+                { shouldTestGameEnded:false },
+                endGame.isGameFinished(nextProps.pieces, nextState.turn === 'B' ? 'W' : 'B', check)
+            )
+            this.setState(newState)
         }
     }
 
@@ -328,83 +336,8 @@ class Chess extends React.Component {
 
     }
 
-    getPawnChoosing(children){
-        const Queen = pieceComponents.Q
-        const Bishop = pieceComponents.B
-        const Knight = pieceComponents.N
-        const Rook = pieceComponents.R
-
-        return (
-            <div>
-                <div style={{opacity:'0.2'}}>
-                    { children }
-                </div>
-                <div className="piece-chooser">
-                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'Q')}>
-                        <Queen menu={true}/>
-                    </a>
-                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'N')}>
-                        <Knight menu={true}/>
-                    </a>
-                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'R')}>
-                        <Rook menu={true}/>
-                    </a>
-                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'B')}>
-                        <Bishop menu={true}/>
-                    </a>
-                </div>
-            </div>)
-    }
-
-    didGameEnd(children){
-        const { isChequemate, isStalemate, isImpossibleChequemate, turn } = this.state
-
-        const wrapperStyle = {
-            display:'flex',
-            justifyContent:'center',
-            width: '100%',
-            position: 'absolute',
-            top:'45%',
-            fontSize:'45px',
-            color:'#0d8dcb'
-        }
-        if(isChequemate){
-            return (
-                <div>
-                    <div style={{opacity:'0.1'}}>
-                        {children}
-                    </div>
-                    <div style={wrapperStyle}>
-                        <h2>Chequemate from <span style={{color:turn === 'B' ? '#d8d8d8' : 'black'}}>{turn === 'B' ? 'White' : 'Black'}</span></h2>
-                    </div>
-                </div>)
-        }else if(isStalemate){
-            return (
-                <div>
-                    <div style={{opacity:'0.2'}}>
-                        {children}
-                    </div>
-                    <div style={wrapperStyle}>
-                        <h2>Stalemate from <span style={{color:turn === 'B' ? '#d8d8d8' : 'black'}}>{turn === 'B' ? 'White' : 'Black'}</span></h2>
-                    </div>
-                </div>)
-        }else if(isImpossibleChequemate){
-            return (
-                <div>
-                    <div style={{opacity:'0.2'}}>
-                        {children}
-                    </div>
-                    <div style={wrapperStyle}>
-                        <h2>The game has finished in a draw</h2>
-                    </div>
-                </div>)
-        }
-
-        return null
-    }
-
     render() {
-        const {targetTile, draggingPiece, boardSize, isPawnChoosing, isChequemate, isStalemate, isImpossibleChequemate} = this.state
+        const {targetTile, draggingPiece, boardSize, isPawnChoosing, isCheckmate, isStalemate, isImpossibleCheckmate, turn} = this.state
 
         const tiles = []
         for (let y = 0; y < 8; y++) {
@@ -436,16 +369,74 @@ class Chess extends React.Component {
             )
         })
 
+        const pawChoises = content => {
+            return (<div>
+                <div style={{opacity:'0.2'}}>
+                    { content }
+                </div>
+                <div className="piece-chooser">
+                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'Q')}>
+                        <pieceComponents.Q menu={true}/>
+                    </a>
+                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'N')}>
+                        <pieceComponents.N menu={true}/>
+                    </a>
+                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'R')}>
+                        <pieceComponents.R menu={true}/>
+                    </a>
+                    <a href="/" className="link-piece-chooser" onClick={evt => this.selectPawNewPiece(evt, 'B')}>
+                        <pieceComponents.B menu={true}/>
+                    </a>
+                </div>
+            </div>)
+        }
+        
+        const isEndOfGame = contentChildren => {
+            const wrapperStyle = {
+                display:'flex',
+                justifyContent:'center',
+                width: '100%',
+                position: 'absolute',
+                top:'45%',
+                fontSize:'45px',
+                color:'#0d8dcb'
+            }
+    
+            const endOfGameWrapper = content => {
+                return (
+                    <div>
+                    <div style={{opacity:'0.2'}}>
+                        {contentChildren}
+                    </div>
+                    <div style={wrapperStyle}>
+                        {content}
+                    </div>
+                </div>
+                )
+            }
+    
+            if(isCheckmate){
+                return endOfGameWrapper(<h2>Checkmate from <span style={{color:turn === 'B' ? '#d8d8d8' : 'black'}}>{turn === 'B' ? 'White' : 'Black'}</span></h2>)
+            }else if(isStalemate){
+                return endOfGameWrapper(<h2>Stalemate from <span style={{color:turn === 'B' ? '#d8d8d8' : 'black'}}>{turn === 'B' ? 'White' : 'Black'}</span></h2>)
+            }else if(isImpossibleCheckmate){
+                return endOfGameWrapper(<h2>The game has finished in a draw</h2>)
+            }
+
+            return null
+        }
+
         let content = tiles.concat(pieces)
 
         if(isPawnChoosing){
-            content = this.getPawnChoosing(content)
-        }else if(isChequemate){
-            content = this.didGameEnd(content)
+            content = pawChoises(content)
+        }else if(isCheckmate){
+            // content = this.didGameEnd(content)
+            content = isEndOfGame(content)
         }else if(isStalemate){
-            content = this.didGameEnd(content)
-        }else if(isImpossibleChequemate){
-            content = this.didGameEnd(content)
+            content = isEndOfGame(content)
+        }else if(isImpossibleCheckmate){
+            content = isEndOfGame(content)
         }
 
         const boardStyles = {
