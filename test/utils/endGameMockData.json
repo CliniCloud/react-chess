@@ -1,0 +1,224 @@
+{
+    "isCheckmateLineup1": [
+        "K-20@a1",
+        "Q-10@h2",
+        "Q-10@g8",
+        "p-7@g3",
+        "p-0@d3",
+        "n-10@f8",
+        "k-28@h5"
+    ],
+    "isCheckmateLineup2": [
+        "K-0@g2",
+        "Q-0@c2",
+        "B-0@f2",
+        "k-0@e1"
+    ],
+    "isCheckmateLineup3": [
+        "K-0@a5",
+        "Q-0@e6",
+        "Q-0@f6",
+        "Q-0@c7",
+        "k-0@e8"
+    ],
+    "isCheckmateLineup4": [
+        "K-0@a5",
+        "Q-0@h7",
+        "Q-0@d7",
+        "R-0@g8",
+        "b-0@f8",
+        "k-0@e8"
+    ],
+    "isCheckmateLineup6": [
+        "K-0@a5",
+        "Q-0@h7",
+        "Q-0@c7",
+        "R-0@g8",
+        "b-0@f8",
+        "k-0@e8"
+    ],
+    "isCheckmateLineup7": [
+        "K-20@d5",
+        "Q-10@g2",
+        "Q-10@c8",
+        "B-7@f6",
+        "P-7@f7",
+        "N-10@h7",
+        "b-7@g8",
+        "p-0@e8",
+        "p-0@d3",
+        "k-28@h8"
+    ],
+    "isCheckmateLineup8": [
+        "K-20@d5",
+        "Q-10@g2",
+        "Q-10@c8",
+        "P-7@g7",
+        "P-7@f7",
+        "b-7@g8",
+        "p-0@e8",
+        "p-0@d3",
+        "p-0@d2",
+        "k-28@h8"
+    ],
+    "isStalemateLineup1": [
+        "K-0@a5",
+        "Q-0@g3",
+        "R-0@g6",
+        "P-0@a7",
+        "k-0@h5"
+    ],
+    "isStalemateLineup2": [
+        "K-0@a5",
+        "Q-0@g3",
+        "R-0@g7",
+        "P-0@a7",
+        "k-0@h5"
+    ],
+    "isStalemateLineup3": [
+        "K-0@a5",
+        "Q-0@g3",
+        "R-0@h8",
+        "P-0@a7",
+        "k-0@h5",
+        "p-0@g4"
+    ],
+    "isStalemateLineup4": [
+        "K-0@f7",
+        "Q-0@g6",
+        "k-0@h8"
+    ],
+    "isStalemateLineup5": [
+        "K-0@g2",
+        "Q-0@c2",
+        "B-0@e3",
+        "k-0@e1"
+    ],
+    "isStalemateLineup6": [
+        "K-0@f1",
+        "Q-3@c3",
+        "B-3@d4",
+        "k-3@d1"
+    ],
+    "isStalemateLineup7": [
+        "K-0@a5",
+        "Q-0@h7",
+        "Q-0@c7",
+        "R-0@g8",
+        "b-0@f8",
+        "k-0@e8"
+    ],
+    "isStalemateLineup8": [
+        "K-0@a5",
+        "Q-0@g3",
+        "R-0@h8",
+        "P-0@a7",
+        "P-0@g5",
+        "P-0@g6",
+        "k-0@h5"
+    ],
+    "getPieceByNameLineup": [
+        "K-0@a5",
+        "Q-0@h7",
+        "Q-0@c7",
+        "R-0@g8",
+        "b-0@f8",
+        "k-0@e8"
+    ],
+    "isImpossibleCheckmateLineup0": [
+        "K-0@h8",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup1": [
+        "K-0@h8",
+        "B-0@h7",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup2": [
+        "K-0@h8",
+        "b-0@h7",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup3": [
+        "K-0@h8",
+        "N-0@h7",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup4": [
+        "K-0@h8",
+        "n-0@h7",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup5": [
+        "K-0@h8",
+        "P-0@h7",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup6": [
+        "K-0@h8",
+        "p-0@h7",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup7": [
+        "K-0@h8",
+        "B-0@h7",
+        "B-0@h6",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup8": [
+        "K-0@h8",
+        "b-0@h7",
+        "b-0@h6",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup9": [
+        "K-0@h8",
+        "N-0@h7",
+        "N-0@h6",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup10": [
+        "K-0@h8",
+        "n-0@h7",
+        "n-0@h6",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup11": [
+        "K-0@h8",
+        "N-0@h7",
+        "B-0@h6",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup12": [
+        "K-0@h8",
+        "b-0@h7",
+        "n-0@h6",
+        "k-0@a1"
+    ],
+    "isImpossibleCheckmateLineup13": [
+        "k-0@h8",
+        "B-0@h7",
+        "N-0@h6",
+        "K-0@a1"
+    ],
+    "isGameFinishedStalemate": {
+        "isCheckmate": false,
+        "isImpossibleCheckmate": false,
+        "isStalemate": true
+    },
+    "isGameFinishedCheckmate": {
+        "isCheckmate": true,
+        "isImpossibleCheckmate": false,
+        "isStalemate": false
+    },
+    "isGameFinishedDraw": {
+        "isCheckmate": false,
+        "isImpossibleCheckmate": true,
+        "isStalemate": false
+    },
+    "isGameFinishedFalse": {
+        "isCheckmate": false,
+        "isImpossibleCheckmate": false,
+        "isStalemate": false
+    }
+}
