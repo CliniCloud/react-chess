@@ -1,0 +1,119 @@
+{
+    "oneMovLineup": [
+        "K-20@a1",
+        "B-10@h2",
+        "R-11@f2",
+        "p-8@d6",
+        "p-7@e5",
+        "p-0@d3",
+        "n-10@g8",
+        "k-28@h5"
+    ],
+    "oneMovUpperLeftResult": {
+        "nextMov": {
+            "x": 6,
+            "y": 2
+        },
+        "endDir": {
+            "topLeft": false,
+            "topRight": false,
+            "downRight": false,
+            "downLeft": false
+        }
+    },
+    "oneAttUpperLeftResult": {
+        "attack": {
+            "x": 4,
+            "y": 4
+        },
+        "endDir": {
+            "topLeft": true,
+            "topRight": false,
+            "downRight": false,
+            "downLeft": false
+        }
+    },
+    "sameTeamPieacePos": {
+        "endDir": {
+            "topLeft": true,
+            "topRight": false,
+            "downRight": false,
+            "downLeft": false
+        }
+    },
+    "threeMovOneAttResult": {
+        "nextMovements": [{
+                "x": 6,
+                "y": 0
+            },
+            {
+                "x": 6,
+                "y": 2
+            },
+            {
+                "x": 5,
+                "y": 3
+            }
+        ],
+        "attacks": [{
+            "x": 4,
+            "y": 4
+        }]
+    },
+    "threateningKingLineup": [
+        "K-20@f2",
+        "B-10@h2",
+        "R-11@d4",
+        "p-8@d6",
+        "p-7@e5",
+        "p-0@d3",
+        "n-10@g8",
+        "k-28@h5",
+        "b-10@g1"
+    ],
+    "threateningKingResult": {
+        "nextMovements": [{
+                "x": 6,
+                "y": 2
+            },
+            {
+                "x": 5,
+                "y": 3
+            }
+        ],
+        "attacks": [{
+            "x": 6,
+            "y": 0
+        }]
+    },
+    "threeAttOneMovLineup": [
+        "K-20@a2",
+        "B-10@e5",
+        "R-11@d4",
+        "p-8@d6",
+        "p-7@f6",
+        "p-0@g3",
+        "n-10@g8",
+        "k-28@h5",
+        "b-10@g1"
+    ],
+    "threeAttOneMovResult": {
+        "nextMovements": [{
+            "x": 5,
+            "y": 3
+        }],
+        "attacks": [{
+                "x": 5,
+                "y": 5
+            },
+            {
+                "x": 3,
+                "y": 5
+            },
+            {
+                "x": 6,
+                "y": 2
+            }
+        ]
+    }
+}
