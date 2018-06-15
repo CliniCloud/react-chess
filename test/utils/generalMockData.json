@@ -1,0 +1,211 @@
+{
+    "getPieceObjectResult": {
+        "index": 2,
+        "name": "b",
+        "notation": "b-10@g1",
+        "piece": "b",
+        "position": "g1",
+        "qntPlayed": 10,
+        "square": "g1",
+        "x": 6,
+        "y": 0
+    },
+    "getPieceObjectNoPositionResult": {
+        "index": 7,
+        "name": "p",
+        "notation": "p-21@a1",
+        "piece": "p",
+        "position": "a1",
+        "qntPlayed": 21,
+        "square": "a1",
+        "x": 0,
+        "y": 0
+    },
+    "getPiece2QntPlayedNoPositionResult": {
+        "index": 7,
+        "name": "p",
+        "notation": "p-2@a1",
+        "piece": "p",
+        "position": "a1",
+        "qntPlayed": 2,
+        "square": "a1",
+        "x": 0,
+        "y": 0
+    },
+    "filterByTypeOfPiecesLineup": [{
+            "name": "K"
+        },
+        {
+            "name": "p"
+        },
+        {
+            "name": "P"
+        },
+        {
+            "name": "B"
+        },
+        {
+            "name": "n"
+        },
+        {
+            "name": "Q"
+        },
+        {
+            "name": "b"
+        },
+        {
+            "name": "q"
+        },
+        {
+            "name": "k"
+        }
+    ],
+    "filterByTypeOfPiecesResult": [{
+        "name": "K"
+    }, {
+        "name": "p"
+    }, {
+        "name": "P"
+    }, {
+        "name": "B"
+    }, {
+        "name": "b"
+    }, {
+        "name": "k"
+    }],
+    "filterByTypeOfPiecesQPResult": [{
+        "name": "p"
+    }, {
+        "name": "P"
+    }, {
+        "name": "Q"
+    }, {
+        "name": "q"
+    }],
+    "filterByTypeOfPiecesKResult": [{
+        "name": "K"
+    }, {
+        "name": "k"
+    }],
+    "findPieceAtPositionLineup": [
+        "K-20@a2",
+        "B-10@e5",
+        "R-11@d4",
+        "p-8@d6",
+        "p-7@f6",
+        "p-0@g3",
+        "n-10@g8",
+        "k-28@h5",
+        "b-10@g1"
+    ],
+    "findPieceAtPositionG3Result": {
+        "index": 5,
+        "name": "p",
+        "notation": "p-0@g3",
+        "piece": "p",
+        "position": "g3",
+        "qntPlayed": 0,
+        "square": "g3",
+        "x": 6,
+        "y": 2
+    },
+    "findPieceAtPositionH5Result": {
+        "index": 7,
+        "name": "k",
+        "notation": "k-28@h5",
+        "piece": "k",
+        "position": "h5",
+        "qntPlayed": 28,
+        "square": "h5",
+        "x": 7,
+        "y": 4
+    },
+    "findPieceAtPositionA2Result": {
+        "index": 0,
+        "name": "K",
+        "notation": "K-20@a2",
+        "piece": "K",
+        "position": "a2",
+        "qntPlayed": 20,
+        "square": "a2",
+        "x": 0,
+        "y": 1
+    },
+    "isMovementValidMovements": [{
+            "x": 1,
+            "y": 1
+        },
+        {
+            "x": 2,
+            "y": 3
+        },
+        {
+            "x": 2,
+            "y": 4
+        },
+        {
+            "x": 4,
+            "y": 5
+        },
+        {
+            "x": 5,
+            "y": 4
+        }
+    ],
+    "isMovementValidAttacks": [{
+            "x": 1,
+            "y": 2
+        },
+        {
+            "x": 1,
+            "y": 3
+        },
+        {
+            "x": 5,
+            "y": 1
+        },
+        {
+            "x": 4,
+            "y": 1
+        },
+        {
+            "x": 3,
+            "y": 2
+        }
+    ],
+    "getPiecesFromTeamLineup": [
+        "K-20@a3",
+        "B-10@e4",
+        "R-11@d5",
+        "p-8@d8",
+        "p-7@f6",
+        "p-0@g3",
+        "n-10@g8",
+        "k-28@h5",
+        "b-10@g1"
+    ],
+    "getPiecesFromTeamWhiteResult": ["K-20@a3", "B-10@e4", "R-11@d5"],
+    "getPiecesFromTeamBlackResult": ["p-8@d8", "p-7@f6", "p-0@g3", "n-10@g8", "k-28@h5", "b-10@g1"],
+
+    "attacks": [{
+            "x": 4,
+            "y": 5
+        },
+        {
+            "x": 4,
+            "y": 4
+        },
+        {
+            "x": 4,
+            "y": 2
+        },
+        {
+            "x": 3,
+            "y": 3
+        }
+    ],
+    "threatenedPos": [{
+        "x": 4,
+        "y": 5
+    }]
+}
