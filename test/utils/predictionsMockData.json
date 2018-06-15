@@ -1,0 +1,1057 @@
+{
+    "getKingPosLineup": [
+        "K-20@a1",
+        "Q-10@h2",
+        "R-11@f2",
+        "p-7@g3",
+        "p-0@d3",
+        "n-10@g8",
+        "k-28@h5"
+    ],
+    "getKingPosLineup1": [
+        "K-20@a1",
+        "Q-10@h2",
+        "R-11@f2",
+        "p-7@g3",
+        "p-0@b2",
+        "n-10@g4",
+        "k-28@h5"
+    ],
+    "getEnemyPositionsResult1": {
+        "attackerPositions": ["p-7@g3", "p-0@d3", "n-10@g8", "k-28@h5"],
+        "enemysPossibleAttacks": [
+            [{
+                "x": 7,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 1
+            }]
+        ],
+        "enemysPossibleMov": [{
+            "name": "p",
+            "nextMovements": [{
+                "x": 6,
+                "y": 1
+            }]
+        }, {
+            "name": "p",
+            "nextMovements": [{
+                "x": 3,
+                "y": 1
+            }, {
+                "x": 3,
+                "y": 0
+            }]
+        }, {
+            "name": "n",
+            "nextMovements": [{
+                "x": 7,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 4,
+                "y": 6
+            }]
+        }, {
+            "name": "k",
+            "nextMovements": [{
+                "x": 7,
+                "y": 5
+            }, {
+                "x": 7,
+                "y": 3
+            }, {
+                "x": 6,
+                "y": 5
+            }, {
+                "x": 6,
+                "y": 4
+            }, {
+                "x": 6,
+                "y": 3
+            }]
+        }]
+    },
+    "getEnemyPositionsResult2": {
+        "attackerPositions": ["K-20@a1", "Q-10@h2", "R-11@f2"],
+        "enemysPossibleAttacks": [
+            [{
+                "x": 6,
+                "y": 2
+            }, {
+                "x": 7,
+                "y": 4
+            }]
+        ],
+        "enemysPossibleMov": [{
+            "name": "K",
+            "nextMovements": [{
+                "x": 1,
+                "y": 1
+            }, {
+                "x": 1,
+                "y": 0
+            }, {
+                "x": 0,
+                "y": 1
+            }]
+        }, {
+            "name": "Q",
+            "nextMovements": [{
+                "x": 6,
+                "y": 0
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 7,
+                "y": 0
+            }, {
+                "x": 7,
+                "y": 2
+            }, {
+                "x": 7,
+                "y": 3
+            }]
+        }, {
+            "name": "R",
+            "nextMovements": [{
+                "x": 4,
+                "y": 1
+            }, {
+                "x": 3,
+                "y": 1
+            }, {
+                "x": 2,
+                "y": 1
+            }, {
+                "x": 1,
+                "y": 1
+            }, {
+                "x": 0,
+                "y": 1
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 0
+            }, {
+                "x": 5,
+                "y": 2
+            }, {
+                "x": 5,
+                "y": 3
+            }, {
+                "x": 5,
+                "y": 4
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 6
+            }, {
+                "x": 5,
+                "y": 7
+            }]
+        }]
+    },
+    "getEnemyPositionsResult3": {
+        "attackerPositions": ["p-7@g3", "p-0@b2", "n-10@g4", "k-28@h5"],
+        "enemysPossibleAttacks": [
+            [{
+                "x": 7,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 1
+            }],
+            [{
+                "x": 0,
+                "y": 0
+            }],
+            [{
+                "x": 7,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 1
+            }]
+        ],
+        "enemysPossibleMov": [{
+            "name": "p",
+            "nextMovements": [{
+                "x": 6,
+                "y": 1
+            }]
+        }, {
+            "name": "p",
+            "nextMovements": [{
+                "x": 1,
+                "y": 0
+            }, {
+                "x": 1,
+                "y": -1
+            }]
+        }, {
+            "name": "n",
+            "nextMovements": [{
+                "x": 7,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 4,
+                "y": 2
+            }, {
+                "x": 4,
+                "y": 4
+            }]
+        }, {
+            "name": "k",
+            "nextMovements": [{
+                "x": 7,
+                "y": 5
+            }, {
+                "x": 7,
+                "y": 3
+            }, {
+                "x": 6,
+                "y": 5
+            }, {
+                "x": 6,
+                "y": 4
+            }]
+        }]
+    },
+    "getEnemyPositionsResult4": {
+        "attackerPositions": ["K-20@a1", "Q-10@h2", "R-11@f2"],
+        "enemysPossibleAttacks": [
+            [{
+                "x": 1,
+                "y": 1
+            }],
+            [{
+                "x": 6,
+                "y": 2
+            }, {
+                "x": 7,
+                "y": 4
+            }],
+            [{
+                "x": 1,
+                "y": 1
+            }]
+        ],
+        "enemysPossibleMov": [{
+            "name": "K",
+            "nextMovements": [{
+                "x": 1,
+                "y": 0
+            }, {
+                "x": 0,
+                "y": 1
+            }]
+        }, {
+            "name": "Q",
+            "nextMovements": [{
+                "x": 6,
+                "y": 0
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 7,
+                "y": 0
+            }, {
+                "x": 7,
+                "y": 2
+            }, {
+                "x": 7,
+                "y": 3
+            }]
+        }, {
+            "name": "R",
+            "nextMovements": [{
+                "x": 4,
+                "y": 1
+            }, {
+                "x": 3,
+                "y": 1
+            }, {
+                "x": 2,
+                "y": 1
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 0
+            }, {
+                "x": 5,
+                "y": 2
+            }, {
+                "x": 5,
+                "y": 3
+            }, {
+                "x": 5,
+                "y": 4
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 6
+            }, {
+                "x": 5,
+                "y": 7
+            }]
+        }]
+    },
+    "isEnemyThreateningKingResult1": {
+        "attackerPositions": ["p-7@g3", "p-0@d3", "n-10@g8", "k-28@h5"],
+        "enemysPossibleAttacks": [
+            [{
+                "x": 7,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 1
+            }]
+        ],
+        "enemysPossibleMov": [{
+            "name": "p",
+            "nextMovements": [{
+                "x": 6,
+                "y": 1
+            }]
+        }, {
+            "name": "p",
+            "nextMovements": [{
+                "x": 3,
+                "y": 1
+            }, {
+                "x": 3,
+                "y": 0
+            }]
+        }, {
+            "name": "n",
+            "nextMovements": [{
+                "x": 7,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 4,
+                "y": 6
+            }]
+        }, {
+            "name": "k",
+            "nextMovements": [{
+                "x": 7,
+                "y": 5
+            }, {
+                "x": 7,
+                "y": 3
+            }, {
+                "x": 6,
+                "y": 5
+            }, {
+                "x": 6,
+                "y": 4
+            }, {
+                "x": 6,
+                "y": 3
+            }]
+        }]
+    },
+    "isEnemyThreateningKingResult2": {
+        "attackerPositions": ["K-20@a1", "Q-10@h2", "R-11@f2"],
+        "enemysPossibleAttacks": [
+            [{
+                "x": 6,
+                "y": 2
+            }, {
+                "x": 7,
+                "y": 4
+            }]
+        ],
+        "enemysPossibleMov": [{
+            "name": "K",
+            "nextMovements": [{
+                "x": 1,
+                "y": 1
+            }, {
+                "x": 1,
+                "y": 0
+            }, {
+                "x": 0,
+                "y": 1
+            }]
+        }, {
+            "name": "Q",
+            "nextMovements": [{
+                "x": 6,
+                "y": 0
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 7,
+                "y": 0
+            }, {
+                "x": 7,
+                "y": 2
+            }, {
+                "x": 7,
+                "y": 3
+            }]
+        }, {
+            "name": "R",
+            "nextMovements": [{
+                "x": 4,
+                "y": 1
+            }, {
+                "x": 3,
+                "y": 1
+            }, {
+                "x": 2,
+                "y": 1
+            }, {
+                "x": 1,
+                "y": 1
+            }, {
+                "x": 0,
+                "y": 1
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 0
+            }, {
+                "x": 5,
+                "y": 2
+            }, {
+                "x": 5,
+                "y": 3
+            }, {
+                "x": 5,
+                "y": 4
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 6
+            }, {
+                "x": 5,
+                "y": 7
+            }]
+        }]
+    },
+    "isEnemyThreateningKingResult3": {
+        "attackerPositions": ["p-7@g3", "p-0@b2", "n-10@g4", "k-28@h5"],
+        "enemysPossibleAttacks": [
+            [{
+                "x": 7,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 1
+            }],
+            [{
+                "x": 0,
+                "y": 0
+            }],
+            [{
+                "x": 7,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 1
+            }]
+        ],
+        "enemysPossibleMov": [{
+            "name": "p",
+            "nextMovements": [{
+                "x": 6,
+                "y": 1
+            }]
+        }, {
+            "name": "p",
+            "nextMovements": [{
+                "x": 1,
+                "y": 0
+            }, {
+                "x": 1,
+                "y": -1
+            }]
+        }, {
+            "name": "n",
+            "nextMovements": [{
+                "x": 7,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 4,
+                "y": 2
+            }, {
+                "x": 4,
+                "y": 4
+            }]
+        }, {
+            "name": "k",
+            "nextMovements": [{
+                "x": 7,
+                "y": 5
+            }, {
+                "x": 7,
+                "y": 3
+            }, {
+                "x": 6,
+                "y": 5
+            }, {
+                "x": 6,
+                "y": 4
+            }]
+        }]
+    },
+    "isEnemyThreateningKingResult4": {
+        "attackerPositions": ["K-20@a1", "Q-10@h2", "R-11@f2"],
+        "enemysPossibleAttacks": [
+            [{
+                "x": 1,
+                "y": 1
+            }],
+            [{
+                "x": 6,
+                "y": 2
+            }, {
+                "x": 7,
+                "y": 4
+            }],
+            [{
+                "x": 1,
+                "y": 1
+            }]
+        ],
+        "enemysPossibleMov": [{
+            "name": "K",
+            "nextMovements": [{
+                "x": 1,
+                "y": 0
+            }, {
+                "x": 0,
+                "y": 1
+            }]
+        }, {
+            "name": "Q",
+            "nextMovements": [{
+                "x": 6,
+                "y": 0
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 7,
+                "y": 0
+            }, {
+                "x": 7,
+                "y": 2
+            }, {
+                "x": 7,
+                "y": 3
+            }]
+        }, {
+            "name": "R",
+            "nextMovements": [{
+                "x": 4,
+                "y": 1
+            }, {
+                "x": 3,
+                "y": 1
+            }, {
+                "x": 2,
+                "y": 1
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 0
+            }, {
+                "x": 5,
+                "y": 2
+            }, {
+                "x": 5,
+                "y": 3
+            }, {
+                "x": 5,
+                "y": 4
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 6
+            }, {
+                "x": 5,
+                "y": 7
+            }]
+        }]
+    },
+    "willTheKingBeThreatingLineup": [
+        "K-20@a1",
+        "Q-10@h2",
+        "R-11@f2",
+        "p-7@g3",
+        "p-0@b2",
+        "n-10@h4",
+        "k-28@h5"
+    ],
+    "willTheKingBeThreatingLineup2": [
+        "K-20@a1",
+        "Q-10@h2",
+        "R-11@f2",
+        "p-7@g3",
+        "p-0@b2",
+        "r-10@h4",
+        "k-28@h5"
+    ],
+    "willTheKingBeThreatingResult1": {
+        "enemysPossibleMov": [{
+            "name": "K",
+            "nextMovements": [{
+                "x": 1,
+                "y": 0
+            }, {
+                "x": 0,
+                "y": 1
+            }]
+        }, {
+            "name": "Q",
+            "nextMovements": [{
+                "x": 6,
+                "y": 0
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 7,
+                "y": 0
+            }, {
+                "x": 7,
+                "y": 2
+            }, {
+                "x": 7,
+                "y": 3
+            }]
+        }, {
+            "name": "R",
+            "nextMovements": [{
+                "x": 4,
+                "y": 1
+            }, {
+                "x": 3,
+                "y": 1
+            }, {
+                "x": 2,
+                "y": 1
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 0
+            }, {
+                "x": 5,
+                "y": 2
+            }, {
+                "x": 5,
+                "y": 3
+            }]
+        }],
+        "isKingThreatened": true,
+        "kinsIsDead": false,
+        "threatenedKingPos": {
+            "name": "k",
+            "notation": "k-28@h5",
+            "piece": "k",
+            "position": "h5",
+            "qntPlayed": 28,
+            "square": "h5",
+            "x": 7,
+            "y": 4
+        },
+        "threateningPos": "Q-10@h2"
+    },
+    "willTheKingBeThreatingResult2": {
+        "enemysPossibleMov": [{
+            "name": "K",
+            "nextMovements": [{
+                "x": 1,
+                "y": 0
+            }, {
+                "x": 0,
+                "y": 1
+            }]
+        }, {
+            "name": "Q",
+            "nextMovements": [{
+                "x": 6,
+                "y": 0
+            }, {
+                "x": 6,
+                "y": 2
+            }, {
+                "x": 5,
+                "y": 3
+            }, {
+                "x": 4,
+                "y": 4
+            }, {
+                "x": 3,
+                "y": 5
+            }, {
+                "x": 2,
+                "y": 6
+            }, {
+                "x": 1,
+                "y": 7
+            }, {
+                "x": 7,
+                "y": 0
+            }, {
+                "x": 7,
+                "y": 2
+            }]
+        }, {
+            "name": "R",
+            "nextMovements": [{
+                "x": 4,
+                "y": 1
+            }, {
+                "x": 3,
+                "y": 1
+            }, {
+                "x": 2,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 0
+            }, {
+                "x": 5,
+                "y": 2
+            }, {
+                "x": 5,
+                "y": 3
+            }, {
+                "x": 5,
+                "y": 4
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 6
+            }, {
+                "x": 5,
+                "y": 7
+            }]
+        }],
+        "isKingThreatened": false,
+        "kinsIsDead": false,
+        "threatenedKingPos": null,
+        "threateningPos": null
+    },
+    "willTheKingBeThreatingResult3": {
+        "enemysPossibleMov": [{
+            "name": "K",
+            "nextMovements": [{
+                "x": 1,
+                "y": 0
+            }, {
+                "x": 0,
+                "y": 1
+            }]
+        }, {
+            "name": "R",
+            "nextMovements": [{
+                "x": 4,
+                "y": 1
+            }, {
+                "x": 3,
+                "y": 1
+            }, {
+                "x": 2,
+                "y": 1
+            }, {
+                "x": 6,
+                "y": 1
+            }, {
+                "x": 5,
+                "y": 0
+            }, {
+                "x": 5,
+                "y": 2
+            }, {
+                "x": 5,
+                "y": 3
+            }, {
+                "x": 5,
+                "y": 4
+            }, {
+                "x": 5,
+                "y": 5
+            }, {
+                "x": 5,
+                "y": 6
+            }, {
+                "x": 5,
+                "y": 7
+            }]
+        }],
+        "isKingThreatened": false,
+        "kinsIsDead": false,
+        "threatenedKingPos": null,
+        "threateningPos": null
+    },
+    "getEnemyNextMovsResult1": [{
+        "name": "K",
+        "nextMovements": [{
+            "x": 1,
+            "y": 1
+        }, {
+            "x": 1,
+            "y": 0
+        }, {
+            "x": 0,
+            "y": 1
+        }]
+    }, {
+        "name": "Q",
+        "nextMovements": [{
+            "x": 6,
+            "y": 0
+        }, {
+            "x": 6,
+            "y": 1
+        }, {
+            "x": 7,
+            "y": 0
+        }, {
+            "x": 7,
+            "y": 2
+        }, {
+            "x": 7,
+            "y": 3
+        }]
+    }, {
+        "name": "R",
+        "nextMovements": [{
+            "x": 4,
+            "y": 1
+        }, {
+            "x": 3,
+            "y": 1
+        }, {
+            "x": 2,
+            "y": 1
+        }, {
+            "x": 1,
+            "y": 1
+        }, {
+            "x": 0,
+            "y": 1
+        }, {
+            "x": 6,
+            "y": 1
+        }, {
+            "x": 5,
+            "y": 0
+        }, {
+            "x": 5,
+            "y": 2
+        }, {
+            "x": 5,
+            "y": 3
+        }, {
+            "x": 5,
+            "y": 4
+        }, {
+            "x": 5,
+            "y": 5
+        }, {
+            "x": 5,
+            "y": 6
+        }, {
+            "x": 5,
+            "y": 7
+        }]
+    }],
+    "getEnemyNextMovsResult2": [{
+        "name": "p",
+        "nextMovements": [{
+            "x": 6,
+            "y": 1
+        }]
+    }, {
+        "name": "p",
+        "nextMovements": [{
+            "x": 3,
+            "y": 1
+        }, {
+            "x": 3,
+            "y": 0
+        }]
+    }, {
+        "name": "n",
+        "nextMovements": [{
+            "x": 7,
+            "y": 5
+        }, {
+            "x": 5,
+            "y": 5
+        }, {
+            "x": 4,
+            "y": 6
+        }]
+    }, {
+        "name": "k",
+        "nextMovements": [{
+            "x": 7,
+            "y": 5
+        }, {
+            "x": 7,
+            "y": 3
+        }, {
+            "x": 6,
+            "y": 5
+        }, {
+            "x": 6,
+            "y": 4
+        }, {
+            "x": 6,
+            "y": 3
+        }]
+    }],
+    "getEnemyNextMovsResult3": [{
+        "name": "K",
+        "nextMovements": [{
+            "x": 1,
+            "y": 0
+        }, {
+            "x": 0,
+            "y": 1
+        }]
+    }, {
+        "name": "Q",
+        "nextMovements": [{
+            "x": 6,
+            "y": 0
+        }, {
+            "x": 6,
+            "y": 1
+        }, {
+            "x": 7,
+            "y": 0
+        }, {
+            "x": 7,
+            "y": 2
+        }, {
+            "x": 7,
+            "y": 3
+        }]
+    }, {
+        "name": "R",
+        "nextMovements": [{
+            "x": 4,
+            "y": 1
+        }, {
+            "x": 3,
+            "y": 1
+        }, {
+            "x": 2,
+            "y": 1
+        }, {
+            "x": 6,
+            "y": 1
+        }, {
+            "x": 5,
+            "y": 0
+        }, {
+            "x": 5,
+            "y": 2
+        }, {
+            "x": 5,
+            "y": 3
+        }, {
+            "x": 5,
+            "y": 4
+        }, {
+            "x": 5,
+            "y": 5
+        }, {
+            "x": 5,
+            "y": 6
+        }, {
+            "x": 5,
+            "y": 7
+        }]
+    }],
+    "getEnemyNextMovsResult4": [{
+        "name": "p",
+        "nextMovements": [{
+            "x": 6,
+            "y": 1
+        }]
+    }, {
+        "name": "p",
+        "nextMovements": [{
+            "x": 1,
+            "y": 0
+        }, {
+            "x": 1,
+            "y": -1
+        }]
+    }, {
+        "name": "n",
+        "nextMovements": [{
+            "x": 7,
+            "y": 5
+        }, {
+            "x": 5,
+            "y": 5
+        }, {
+            "x": 4,
+            "y": 2
+        }, {
+            "x": 4,
+            "y": 4
+        }]
+    }, {
+        "name": "k",
+        "nextMovements": [{
+            "x": 7,
+            "y": 5
+        }, {
+            "x": 7,
+            "y": 3
+        }, {
+            "x": 6,
+            "y": 5
+        }, {
+            "x": 6,
+            "y": 4
+        }]
+    }]
+}
