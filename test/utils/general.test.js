@@ -3,6 +3,15 @@ const decode = require('../../src/decode');
 const mockedData = require('./generalMockData.json');
 
 describe('general', () => {
+    let currentEnv;
+    beforeAll(() => {
+        currentEnv = process.env.NODE_ENV;
+    })
+
+    afterAll(() => {
+        process.env.NODE_ENV = currentEnv;
+    })
+    
     describe('isTestEnv', () => {
         test('should return false if NODE_ENV is not development', () => {
             process.env.NODE_ENV='production';

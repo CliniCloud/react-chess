@@ -1,7 +1,7 @@
 {
   "name": "react-chess",
   "description": "Renders a chess board using React",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "keywords": [
     "chess",
     "board",
@@ -20,10 +20,8 @@
     "posttest": "eslint .",
     "prepublishOnly": "npm run qa",
     "qa": "npm test && npm run build",
-    "test": "jest --coverage",
-    "watch": "babel --watch --copy-files -d lib/ src/",
-    "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/css",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./node_modules src/ -o src/css --watch --recursive"
+    "test": "NODE_ENV=development && jest --coverage",
+    "watch": "babel --watch --copy-files -d lib/ src/"
   },
   "repository": {
     "type": "git",
@@ -41,7 +39,6 @@
   },
   "dependencies": {
     "concurrently": "^3.5.1",
-    "node-sass-chokidar": "0.0.3",
     "prop-types": "^15.6.0",
     "react-draggable": "^3.0.3",
     "react-resize-aware": "^2.7.0"
@@ -55,6 +52,7 @@
     "eslint": "^4.12.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-sanity": "^3.1.0",
+    "eslint-plugin-jest": "^21.15.0",
     "eslint-plugin-react": "^7.4.0",
     "gh-pages-deploy": "^0.4.2",
     "jest": "^21.2.1",
@@ -76,6 +74,9 @@
     "coverageDirectory": "coverage",
     "collectCoverageFrom": [
       "src/**.js"
+    ],
+    "modulePathIgnorePatterns": [
+      ".history"
     ]
   }
 }
