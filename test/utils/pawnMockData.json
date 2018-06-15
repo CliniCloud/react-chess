@@ -1,0 +1,399 @@
+{
+    "defaultBlackLineUp": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-7@c6",
+        "P-7@a6",
+        "n-10@g8",
+        "p-0@b7",
+        "k-28@h5"
+    ],
+    "defaultWhiteLineUp": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-0@c2",
+        "p-7@b3",
+        "p-4@d3",
+        "n-10@g8",
+        "k-28@h5"
+    ],
+    "createMovAttackByPosRightST": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-7@c6",
+        "n-10@g8",
+        "p-0@b7",
+        "p-7@a6",
+        "k-28@h5"
+    ],
+    "createMovAttackByPosLeftST": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-7@d6",
+        "n-10@g8",
+        "p-0@b7",
+        "p-7@c6",
+        "k-28@h5"
+    ],
+    "createMovAttackByPosSTWay": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-7@c6",
+        "n-10@g8",
+        "p-0@b7",
+        "p-7@b6",
+        "k-28@h5"
+    ],
+    "createMovAttackByPosEnemyWay": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-7@c6",
+        "P-7@b6",
+        "n-10@g8",
+        "p-0@b7",
+        "k-28@h5"
+    ],
+    "whiteLeftAttSameTeam": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-0@c2",
+        "Q-1@b3",
+        "p-0@d3",
+        "n-10@g8",
+        "k-28@h5"
+    ],
+    "whiteRightAttSameTeam": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-0@c2",
+        "R-1@d3",
+        "p-1@b3",
+        "n-10@g8",
+        "k-28@h5"
+    ],
+    "whiteMovSameTeamWay": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-0@c2",
+        "R-4@c3",
+        "p-1@b3",
+        "n-10@g8",
+        "k-28@h5"
+    ],
+    "whiteMovEnemyWay": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-0@c2",
+        "r-4@c3",
+        "p-1@b3",
+        "n-10@g8",
+        "k-28@h5"
+    ],
+    "createMovsAttacks1Mov1AttBlack": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-7@c5",
+        "n-10@g8",
+        "p-1@b6",
+        "k-28@h5"
+    ],
+    "create1Mov1AttWhite": [
+        "K-20@a1",
+        "N-10@g2",
+        "P-1@c3",
+        "p-4@d4",
+        "n-10@g8",
+        "k-28@h5"
+    ],
+    "getOptionsBlackPawnKingThreathening": [
+        "K-20@a1",
+        "Q-10@h2",
+        "R-11@f2",
+        "p-7@g3",
+        "p-0@d3",
+        "n-10@g8",
+        "k-28@h5"
+    ],
+    "getOptionsWhitePawnKingThreathening": [
+        "K-28@h1",
+        "P-10@g7",
+        "k-20@a1",
+        "q-10@h8"
+    ],
+    "getOptionsWhitePawn1Att1Mov": [
+        "K-28@g1",
+        "P-10@g7",
+        "k-20@a1",
+        "q-10@h8"
+    ],
+    "getEnemyPawnsAttacks2WhitePawns": [
+        "K-28@h1",
+        "P-3@d5",
+        "r-15@e6",
+        "k-20@a1"
+    ],
+    "getEnemyPawnsAttacks4WhitePawns": [
+        "K-28@h1",
+        "P-3@d5",
+        "P-3@b5",
+        "r-15@e6",
+        "k-20@a1"
+    ],
+    "getEnemyPawnsAttacks2BlackPawns": [
+        "K-28@h1",
+        "R-15@d5",
+        "p-3@e6",
+        "k-20@a1"
+    ],
+    "getEnemyPawnsAttacks4BlackPawns": [
+        "K-28@h1",
+        "R-15@d5",
+        "p-3@e6",
+        "p-3@b3",
+        "k-20@a1"
+    ],
+    "oneMoveBlack": [{
+        "x": 1,
+        "y": 5
+    }],
+    "twoMovesBlack": [{
+            "x": 1,
+            "y": 5
+        },
+        {
+            "x": 1,
+            "y": 4
+        }
+    ],
+    "rightAttackBlack": {
+        "x": 2,
+        "y": 5
+    },
+    "leftAttackBlack": {
+        "x": 0,
+        "y": 5
+    },
+    "oneMoveWhite": [{
+        "x": 2,
+        "y": 2
+    }],
+    "twoMovesWhite": [{
+            "x": 2,
+            "y": 2
+        },
+        {
+            "x": 2,
+            "y": 3
+        }
+    ],
+    "rightAttackWhite": {
+        "x": 3,
+        "y": 2
+    },
+    "leftAttackWhite": {
+        "x": 1,
+        "y": 2
+    },
+    "twoMovesTwoAttacksBlack": {
+        "attacks": [{
+                "x": 2,
+                "y": 5
+            },
+            {
+                "x": 0,
+                "y": 5
+            }
+        ],
+        "movs": [{
+                "x": 1,
+                "y": 5
+            },
+            {
+                "x": 1,
+                "y": 4
+            }
+        ]
+    },
+    "oneMoveOneAttackBlack": {
+        "attacks": [{
+            "x": 2,
+            "y": 4
+        }],
+        "movs": [{
+            "x": 1,
+            "y": 4
+        }]
+    },
+    "twoMovesTwoAttacksWhite": {
+        "attacks": [{
+                "x": 3,
+                "y": 2
+            },
+            {
+                "x": 1,
+                "y": 2
+            }
+        ],
+        "movs": [{
+                "x": 2,
+                "y": 2
+            },
+            {
+                "x": 2,
+                "y": 3
+            }
+        ]
+    },
+    "oneMoveOneAttackWhite": {
+        "attacks": [{
+            "x": 3,
+            "y": 3
+        }],
+        "movs": [{
+            "x": 2,
+            "y": 3
+        }]
+    },
+    "blackPawnAttackAgainThreatening": [{
+        "x": 7,
+        "y": 1
+    }],
+    "whitePawnAttackAgainThreatening": [{
+        "x": 7,
+        "y": 7
+    }],
+    "whitePawn1Att1MovResult": {
+        "nextMovements": [{
+            "x": 6,
+            "y": 7
+        }],
+        "attacks": [{
+            "x": 7,
+            "y": 7
+        }]
+    },
+    "fourWhitePrawnAttacks": [{
+            "x": 4,
+            "y": 5,
+            "piece": "P",
+            "square": "d5",
+            "qntPlayed": 3,
+            "name": "P",
+            "notation": "P-3@d5",
+            "position": "d5"
+        },
+        {
+            "x": 2,
+            "y": 5,
+            "piece": "P",
+            "square": "d5",
+            "qntPlayed": 3,
+            "name": "P",
+            "notation": "P-3@d5",
+            "position": "d5"
+        },
+        {
+            "x": 2,
+            "y": 5,
+            "piece": "P",
+            "square": "b5",
+            "qntPlayed": 3,
+            "name": "P",
+            "notation": "P-3@b5",
+            "position": "b5"
+        },
+        {
+            "x": 0,
+            "y": 5,
+            "piece": "P",
+            "square": "b5",
+            "qntPlayed": 3,
+            "name": "P",
+            "notation": "P-3@b5",
+            "position": "b5"
+        }
+    ],
+    "twoWhitePrawnAttacks": [{
+            "x": 4,
+            "y": 5,
+            "piece": "P",
+            "square": "d5",
+            "qntPlayed": 3,
+            "name": "P",
+            "notation": "P-3@d5",
+            "position": "d5"
+        },
+        {
+            "x": 2,
+            "y": 5,
+            "piece": "P",
+            "square": "d5",
+            "qntPlayed": 3,
+            "name": "P",
+            "notation": "P-3@d5",
+            "position": "d5"
+        }
+    ],
+    "twoBlackPawnAttacks": [{
+            "x": 5,
+            "y": 4,
+            "piece": "p",
+            "square": "e6",
+            "qntPlayed": 3,
+            "name": "p",
+            "notation": "p-3@e6",
+            "position": "e6"
+        },
+        {
+            "x": 3,
+            "y": 4,
+            "piece": "p",
+            "square": "e6",
+            "qntPlayed": 3,
+            "name": "p",
+            "notation": "p-3@e6",
+            "position": "e6"
+        }
+    ],
+    "fourBlackPawnAttacks": [{
+            "x": 5,
+            "y": 4,
+            "piece": "p",
+            "square": "e6",
+            "qntPlayed": 3,
+            "name": "p",
+            "notation": "p-3@e6",
+            "position": "e6"
+        },
+        {
+            "x": 3,
+            "y": 4,
+            "piece": "p",
+            "square": "e6",
+            "qntPlayed": 3,
+            "name": "p",
+            "notation": "p-3@e6",
+            "position": "e6"
+        },
+        {
+            "x": 2,
+            "y": 1,
+            "piece": "p",
+            "square": "b3",
+            "qntPlayed": 3,
+            "name": "p",
+            "notation": "p-3@b3",
+            "position": "b3"
+        },
+        {
+            "x": 0,
+            "y": 1,
+            "piece": "p",
+            "square": "b3",
+            "qntPlayed": 3,
+            "name": "p",
+            "notation": "p-3@b3",
+            "position": "b3"
+        }
+    ]
+}
