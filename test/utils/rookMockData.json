@@ -1,0 +1,306 @@
+{
+    "defaultLineUp": [
+        "K-28@d5",
+        "R-15@c6",
+        "b-3@e6",
+        "p-3@c3",
+        "b-3@c8",
+        "b-4@a6",
+        "k-20@a1"
+    ],
+    "movementLineUp": [
+        "K-28@d5",
+        "R-15@c6",
+        "b-3@a8",
+        "k-20@a1"
+    ],
+    "lineupNomovementAttack": [
+        "K-28@d5",
+        "R-15@c6",
+        "B-3@c8",
+        "b-3@h8",
+        "k-20@a1"
+    ],
+    "getOptions1Mov":[
+        "K-28@d5",
+        "R-15@c6",
+        "B-3@c7",
+        "B-3@c4",
+        "B-3@b6",
+        "B-3@d6",
+        "p-3@c3",
+        "k-20@a1"
+    ],
+    "getOptions3Mov":[
+        "K-28@d5",
+        "R-15@c6",
+        "B-3@c7",
+        "B-3@c4",
+        "B-3@d6",
+        "p-3@c3",
+        "k-20@a1"
+    ],
+    "oneDownAttack": {
+        "attack": {
+            "x": 2,
+            "y": 2
+        },
+        "endDir": {
+            "left": false,
+            "right": false,
+            "top": false,
+            "down": true
+        }
+    },
+    "oneRightAttack": {
+        "attack": {
+            "x": 4,
+            "y": 5
+        },
+        "endDir": {
+            "left": false,
+            "right": true,
+            "top": false,
+            "down": false
+        }
+    },
+    "oneTopAttack": {
+        "attack": {
+            "x": 2,
+            "y": 7
+        },
+        "endDir": {
+            "left": false,
+            "right": false,
+            "top": true,
+            "down": false
+        }
+    },
+    "oneLeftAttack": {
+        "attack": {
+            "x": 0,
+            "y": 5
+        },
+        "endDir": {
+            "left": true,
+            "right": false,
+            "top": false,
+            "down": false
+        }
+    },
+    "oneDownMovement": {
+        "nextMov": {
+            "x": 2,
+            "y": 2
+        },
+        "endDir": {
+            "left": false,
+            "right": false,
+            "top": false,
+            "down": false
+        }
+    },
+    "oneRightMovement": {
+        "nextMov": {
+            "x": 4,
+            "y": 5
+        },
+        "endDir": {
+            "left": false,
+            "right": false,
+            "top": false,
+            "down": false
+        }
+    },
+    "oneLeftMovement": {
+        "nextMov": {
+            "x": 0,
+            "y": 5
+        },
+        "endDir": {
+            "left": false,
+            "right": false,
+            "top": false,
+            "down": false
+        }
+    },
+    "oneTopMovement": {
+        "nextMov": {
+            "x": 2,
+            "y": 7
+        },
+        "endDir": {
+            "left": false,
+            "right": false,
+            "top": false,
+            "down": false
+        }
+    },
+    "noAttackAndMove": {
+        "endDir": {
+            "left": false,
+            "right": false,
+            "top": true,
+            "down": false
+        }
+    },
+    "leftMovsAttacks": {
+        "endDir": {
+            "left": true,
+            "right": false,
+            "top": false,
+            "down": false
+        },
+        "attacks": [{
+            "x": 0,
+            "y": 5
+        }],
+        "movs": [{
+            "x": 1,
+            "y": 5
+        }]
+    },
+    "rightMovsAttacks": {
+        "endDir": {
+            "left": false,
+            "right": true,
+            "top": false,
+            "down": false
+        },
+        "attacks": [{
+            "x": 4,
+            "y": 5
+        }],
+        "movs": [{
+            "x": 3,
+            "y": 5
+        }]
+    },
+    "downMovsAttacks": {
+        "endDir": {
+            "left": false,
+            "right": false,
+            "top": false,
+            "down": true
+        },
+        "attacks": [{
+            "x": 2,
+            "y": 2
+        }],
+        "movs": [{
+                "x": 2,
+                "y": 4
+            },
+            {
+                "x": 2,
+                "y": 3
+            }
+        ]
+    },
+    "topMovsAttacks": {
+        "endDir": {
+            "left": false,
+            "right": false,
+            "top": true,
+            "down": false
+        },
+        "attacks": [{
+            "x": 2,
+            "y": 7
+        }],
+        "movs": [{
+            "x": 2,
+            "y": 6
+        }]
+    },
+    "fiveMovesFourAttacks": {
+        "nextMovements": [{
+                "x": 1,
+                "y": 5
+            },
+            {
+                "x": 3,
+                "y": 5
+            },
+            {
+                "x": 2,
+                "y": 4
+            },
+            {
+                "x": 2,
+                "y": 3
+            },
+            {
+                "x": 2,
+                "y": 6
+            }
+        ],
+        "attacks": [{
+                "x": 0,
+                "y": 5
+            },
+            {
+                "x": 4,
+                "y": 5
+            },
+            {
+                "x": 2,
+                "y": 2
+            },
+            {
+                "x": 2,
+                "y": 7
+            }
+        ]
+    },
+    "fiveMovesOneAttack": {
+        "nextMovements": [{
+                "x": 1,
+                "y": 5
+            },
+            {
+                "x": 3,
+                "y": 5
+            },
+            {
+                "x": 2,
+                "y": 4
+            },
+            {
+                "x": 2,
+                "y": 3
+            },
+            {
+                "x": 2,
+                "y": 6
+            }
+        ],
+        "attacks": [{
+            "x": 4,
+            "y": 5
+        }]
+    },
+    "oneMovesNoAttack": {
+        "nextMovements": [{
+            "x": 2,
+            "y": 4
+        }],
+        "attacks": []
+    },
+    "threeMovesNoAttack": {
+        "nextMovements": [{
+                "x": 1,
+                "y": 5
+            },
+            {
+                "x": 0,
+                "y": 5
+            },
+            {
+                "x": 2,
+                "y": 4
+            }
+        ],
+        "attacks": []
+    }
+}
