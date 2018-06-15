@@ -1,0 +1,892 @@
+{
+    "getNextMovsAttacksLineUp": [
+        "K-28@a1",
+        "P-10@g6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-20@a3",
+        "q-10@h8"
+    ],
+    "getNextMovsAttacksLineUp2": [
+        "K-28@h8",
+        "P-10@g6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-20@a3",
+        "q-10@c7"
+    ],
+    "createMovsAttacksLineUp": [
+        "K-28@f2",
+        "P-10@g6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-20@a1",
+        "q-10@h8"
+    ],
+    "createMovsAttacksResult1": {
+        "attacks": [{
+            "x": 6,
+            "y": 2
+        }, {
+            "x": 5,
+            "y": 2
+        }],
+        "nextMovements": [{
+            "x": 6,
+            "y": 1
+        }, {
+            "x": 6,
+            "y": 0
+        }, {
+            "x": 5,
+            "y": 0
+        }, {
+            "x": 4,
+            "y": 2
+        }, {
+            "x": 4,
+            "y": 1
+        }, {
+            "x": 4,
+            "y": 0
+        }]
+    },
+    "createMovsAttacksLineUp1": [
+        "K-28@f1",
+        "P-10@g4",
+        "p-20@f2",
+        "p-20@g2",
+        "k-20@a1",
+        "q-10@h8"
+    ],
+    "createMovsAttacksResult2": {
+        "attacks": [{
+            "x": 6,
+            "y": 1
+        }, {
+            "x": 5,
+            "y": 1
+        }],
+        "nextMovements": [{
+            "x": 6,
+            "y": 0
+        }, {
+            "x": 4,
+            "y": 1
+        }, {
+            "x": 4,
+            "y": 0
+        }]
+    },
+    "createMovsAttacksLineUp2": [
+        "K-28@b6",
+        "P-10@g6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-20@a1",
+        "q-10@h8"
+    ],
+    "createMovsAttacksResult3": {
+        "attacks": [],
+        "nextMovements": [{
+            "x": 2,
+            "y": 6
+        }, {
+            "x": 2,
+            "y": 5
+        }, {
+            "x": 2,
+            "y": 4
+        }, {
+            "x": 1,
+            "y": 6
+        }, {
+            "x": 1,
+            "y": 4
+        }, {
+            "x": 0,
+            "y": 6
+        }, {
+            "x": 0,
+            "y": 5
+        }, {
+            "x": 0,
+            "y": 4
+        }]
+    },
+    "createMovsAttacksLineUp3": [
+        "K-28@b8",
+        "P-10@g6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-20@a1",
+        "q-10@h8"
+    ],
+    "createMovsAttacksResult4": {
+        "attacks": [],
+        "nextMovements": [{
+            "x": 2,
+            "y": 7
+        }, {
+            "x": 2,
+            "y": 6
+        }, {
+            "x": 1,
+            "y": 6
+        }, {
+            "x": 0,
+            "y": 7
+        }, {
+            "x": 0,
+            "y": 6
+        }]
+    },
+    "createMovsAttacksLineUp4": [
+        "K-28@b8",
+        "P-10@b7",
+        "p-20@f3",
+        "p-20@g3",
+        "k-20@a1",
+        "q-10@h8"
+    ],
+    "createMovsAttacksResult5": {
+        "attacks": [],
+        "nextMovements": [{
+            "x": 2,
+            "y": 7
+        }, {
+            "x": 2,
+            "y": 6
+        }, {
+            "x": 0,
+            "y": 7
+        }, {
+            "x": 0,
+            "y": 6
+        }]
+    },
+    "createMovsAttacksResult6": {
+        "attacks": [],
+        "nextMovements": [{
+            "x": 7,
+            "y": 6
+        }, {
+            "x": 6,
+            "y": 7
+        }, {
+            "x": 6,
+            "y": 6
+        }]
+    },
+    "createMovsAttacksResult7": {
+        "attacks": [],
+        "nextMovements": [{
+            "x": 1,
+            "y": 1
+        }, {
+            "x": 1,
+            "y": 0
+        }, {
+            "x": 0,
+            "y": 1
+        }]
+    },
+    "getCastlingPosLineup": [
+        "K-0@e1",
+        "R-0@h1",
+        "R-0@a1",
+        "P-10@g6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-0@e8",
+        "r-0@a8",
+        "r-0@h8"
+    ],
+    "getCastlingPosLineup1": [
+        "K-0@e1",
+        "R-1@h1",
+        "R-20@a1",
+        "P-10@g6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-0@e8",
+        "r-1@a8",
+        "r-10@h8"
+    ],
+    "getCastlingPosLineup2": [
+        "K-0@e1",
+        "R-0@h1",
+        "R-0@a1",
+        "N-0@f1",
+        "N-0@b1",
+        "p-20@f3",
+        "p-20@g3",
+        "k-0@e8",
+        "r-0@a8",
+        "r-0@h8",
+        "n-0@g8",
+        "n-0@b8"
+    ],
+    "getCastlingPosLineup3": [
+        "K-0@e1",
+        "R-0@h1",
+        "R-0@a1",
+        "n-0@f1",
+        "n-0@b1",
+        "p-20@f3",
+        "p-20@g3",
+        "k-0@e8",
+        "r-0@a8",
+        "r-0@h8",
+        "N-0@g8",
+        "N-0@b8"
+    ],
+    "getCastlingPosResult1": {
+        "rookPos": {
+            "index": 1,
+            "name": "R",
+            "nextPos": "f1",
+            "notation": "R-0@h1",
+            "piece": "R",
+            "position": "h1",
+            "qntPlayed": 0,
+            "square": "h1",
+            "x": 7,
+            "y": 0
+        },
+        "x": 6,
+        "y": 0
+    },
+    "getCastlingPosResult2": {
+        "rookPos": {
+            "index": 2,
+            "name": "R",
+            "nextPos": "d1",
+            "notation": "R-0@a1",
+            "piece": "R",
+            "position": "a1",
+            "qntPlayed": 0,
+            "square": "a1",
+            "x": 0,
+            "y": 0
+        },
+        "x": 2,
+        "y": 0
+    },
+    "getCastlingPosResult3": {
+        "rookPos": {
+            "index": 8,
+            "name": "r",
+            "nextPos": "f8",
+            "notation": "r-0@h8",
+            "piece": "r",
+            "position": "h8",
+            "qntPlayed": 0,
+            "square": "h8",
+            "x": 7,
+            "y": 7
+        },
+        "x": 6,
+        "y": 7
+    },
+    "getCastlingPosResult4": {
+        "rookPos": {
+            "index": 7,
+            "name": "r",
+            "nextPos": "d8",
+            "notation": "r-0@a8",
+            "piece": "r",
+            "position": "a8",
+            "qntPlayed": 0,
+            "square": "a8",
+            "x": 0,
+            "y": 7
+        },
+        "x": 2,
+        "y": 7
+    },
+    "removeNextMovsByEnemyMovsLineup1": {
+        "myTeam": [{
+                "x": 1,
+                "y": 2
+            },
+            {
+                "x": 2,
+                "y": 2
+            },
+            {
+                "x": 3,
+                "y": 3
+            },
+            {
+                "x": 3,
+                "y": 1
+            },
+            {
+                "x": 1,
+                "y": 1
+            }
+        ],
+        "enemy": [{
+            "name": "k",
+            "nextMovements": [{
+                "x": 1,
+                "y": 2
+            }]
+        }]
+    },
+    "removeNextMovsByEnemyMovsResult1": [{
+            "x": 2,
+            "y": 2
+        },
+        {
+            "x": 3,
+            "y": 3
+        },
+        {
+            "x": 3,
+            "y": 1
+        },
+        {
+            "x": 1,
+            "y": 1
+        }
+    ],
+    "removeNextMovsByEnemyMovsLineup2": {
+        "myTeam": [{
+                "x": 1,
+                "y": 2
+            },
+            {
+                "x": 2,
+                "y": 2
+            },
+            {
+                "x": 3,
+                "y": 3
+            },
+            {
+                "x": 3,
+                "y": 1
+            },
+            {
+                "x": 1,
+                "y": 1
+            }
+        ],
+        "enemy": [{
+                "name": "Q",
+                "nextMovements": [{
+                    "x": 1,
+                    "y": 2
+                }]
+            },
+            {
+                "name": "B",
+                "nextMovements": [{
+                        "x": 2,
+                        "y": 2
+                    },
+                    {
+                        "x": 3,
+                        "y": 1
+                    }
+                ]
+            }
+        ]
+    },
+    "removeNextMovsByEnemyMovsResult2": [{
+            "x": 3,
+            "y": 3
+        },
+        {
+            "x": 1,
+            "y": 1
+        }
+    ],
+    "removeNextMovsByEnemyMovsLineup3": {
+        "myTeam": [{
+                "x": 1,
+                "y": 2
+            },
+            {
+                "x": 2,
+                "y": 2
+            },
+            {
+                "x": 3,
+                "y": 3
+            },
+            {
+                "x": 3,
+                "y": 1
+            },
+            {
+                "x": 1,
+                "y": 1
+            }
+        ],
+        "enemy": [{
+                "name": "R",
+                "nextMovements": [{
+                    "x": 1,
+                    "y": 2
+                }]
+            },
+            {
+                "name": "N",
+                "nextMovements": [{
+                    "x": 2,
+                    "y": 2
+                }]
+            },
+            {
+                "name": "B",
+                "nextMovements": [{
+                    "x": 3,
+                    "y": 1
+                }]
+            }
+        ]
+    },
+    "removeNextMovsByEnemyMovsLineup4": {
+        "myTeam": [{
+                "x": 1,
+                "y": 2
+            },
+            {
+                "x": 2,
+                "y": 2
+            },
+            {
+                "x": 3,
+                "y": 3
+            },
+            {
+                "x": 3,
+                "y": 1
+            },
+            {
+                "x": 1,
+                "y": 1
+            }
+        ],
+        "enemy": [{
+            "name": "p",
+            "nextMovements": [{
+                "x": 1,
+                "y": 2
+            }]
+        }]
+    },
+    "removeNextMovsByEnemyMovsResult4": [{
+            "x": 1,
+            "y": 2
+        },
+        {
+            "x": 2,
+            "y": 2
+        },
+        {
+            "x": 3,
+            "y": 3
+        },
+        {
+            "x": 3,
+            "y": 1
+        },
+        {
+            "x": 1,
+            "y": 1
+        }
+    ],
+    "removeNextMovsByEnemyPawsMovsLineup": [
+        "K-0@e1",
+        "R-0@h1",
+        "P-10@g6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-0@e8",
+        "r-0@a8"
+    ],
+    "removeNextMovsByEnemyPawsMovsMovs": [{
+            "x": 3,
+            "y": 1
+        },
+        {
+            "x": 4,
+            "y": 1
+        },
+        {
+            "x": 5,
+            "y": 1
+        },
+        {
+            "x": 3,
+            "y": 0
+        },
+        {
+            "x": 5,
+            "y": 0
+        },
+        {
+            "x": 5,
+            "y": 1
+        }
+    ],
+    "removeNextMovsByEnemyPawsMovsResult": [{
+        "x": 3,
+        "y": 1
+    }, {
+        "x": 3,
+        "y": 0
+    }, {
+        "x": 5,
+        "y": 0
+    }],
+    "removeNextMovsByEnemyPawsMovsLineup2": [
+        "K-0@e1",
+        "R-0@h1",
+        "P-10@f6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-0@e8",
+        "r-0@a8"
+    ],
+    "removeNextMovsByEnemyPawsMovsMovs2": [{
+            "x": 3,
+            "y": 7
+        },
+        {
+            "x": 4,
+            "y": 6
+        },
+        {
+            "x": 5,
+            "y": 6
+        },
+        {
+            "x": 3,
+            "y": 6
+        },
+        {
+            "x": 5,
+            "y": 7
+        },
+        {
+            "x": 5,
+            "y": 6
+        }
+    ],
+    "removeNextMovsByEnemyPawsMovsResult2": [{
+            "x": 3,
+            "y": 7
+        },
+        {
+            "x": 5,
+            "y": 6
+        },
+        {
+            "x": 3,
+            "y": 6
+        },
+        {
+            "x": 5,
+            "y": 7
+        },
+        {
+            "x": 5,
+            "y": 6
+        }
+    ],
+    "getOptionsLineup1": [
+        "K-0@e1",
+        "R-0@h1",
+        "R-0@a1",
+        "P-10@f6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-0@e8",
+        "r-0@d8"
+    ],
+    "getOptionsLineup2": [
+        "K-1@e1",
+        "R-0@h1",
+        "P-10@f6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-0@e8",
+        "r-1@d8"
+    ],
+    "getOptionsLineup3": [
+        "K-1@d1",
+        "R-1@h1",
+        "P-10@g6",
+        "p-20@f3",
+        "p-20@g3",
+        "k-0@e8",
+        "r-0@d8"
+    ],
+    "getOptionsLineup4": [
+        "K-1@d1",
+        "R-1@h1",
+        "P-10@g6",
+        "p-20@e1",
+        "p-20@g3",
+        "k-0@e8",
+        "r-0@d8"
+    ],
+    "getOptionsLineup5": [
+        "K-1@d1",
+        "R-1@h1",
+        "P-10@g6",
+        "p-20@d2",
+        "p-20@g3",
+        "k-0@e8",
+        "r-0@d8"
+    ],
+    "getOptionsEnemysMovs1": [{
+            "name": "r",
+            "nextMovements": [{
+                    "x": 3,
+                    "y": 7
+                },
+                {
+                    "x": 3,
+                    "y": 6
+                },
+                {
+                    "x": 3,
+                    "y": 5
+                },
+                {
+                    "x": 3,
+                    "y": 4
+                },
+                {
+                    "x": 3,
+                    "y": 3
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                },
+                {
+                    "x": 3,
+                    "y": 1
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "name": "p",
+            "nextMovements": [{
+                    "x": 4,
+                    "y": 1
+                },
+                {
+                    "x": 6,
+                    "y": 1
+                }
+            ]
+        },
+        {
+            "name": "p",
+            "nextMovements": [{
+                    "x": 5,
+                    "y": 1
+                },
+                {
+                    "x": 7,
+                    "y": 1
+                }
+            ]
+        }
+    ],
+    "getOptionsEnemysMovs2": [{
+            "name": "r",
+            "nextMovements": [{
+                    "x": 3,
+                    "y": 7
+                },
+                {
+                    "x": 3,
+                    "y": 6
+                },
+                {
+                    "x": 3,
+                    "y": 5
+                },
+                {
+                    "x": 3,
+                    "y": 4
+                },
+                {
+                    "x": 3,
+                    "y": 3
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                },
+                {
+                    "x": 3,
+                    "y": 1
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "name": "p",
+            "nextMovements": [{
+                "x": 4,
+                "y": 0
+            }]
+        },
+        {
+            "name": "p",
+            "nextMovements": [{
+                    "x": 5,
+                    "y": 1
+                },
+                {
+                    "x": 7,
+                    "y": 1
+                }
+            ]
+        }
+    ],
+    "getOptionsEnemysMovs3": [{
+            "name": "r",
+            "nextMovements": [{
+                    "x": 3,
+                    "y": 7
+                },
+                {
+                    "x": 3,
+                    "y": 6
+                },
+                {
+                    "x": 3,
+                    "y": 5
+                },
+                {
+                    "x": 3,
+                    "y": 4
+                },
+                {
+                    "x": 3,
+                    "y": 3
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                }
+            ]
+        },
+        {
+            "name": "p",
+            "nextMovements": [{
+                    "x": 5,
+                    "y": 1
+                },
+                {
+                    "x": 7,
+                    "y": 1
+                }
+            ]
+        }
+    ],
+    "getOptionsResult1": {
+        "attacks": [],
+        "nextMovements": [{
+            "x": 5,
+            "y": 0
+        }, {
+            "rookPos": {
+                "index": 2,
+                "name": "R",
+                "nextPos": "d1",
+                "notation": "R-0@a1",
+                "piece": "R",
+                "position": "a1",
+                "qntPlayed": 0,
+                "square": "a1",
+                "x": 0,
+                "y": 0
+            },
+            "x": 2,
+            "y": 0
+        }, {
+            "rookPos": {
+                "index": 1,
+                "name": "R",
+                "nextPos": "f1",
+                "notation": "R-0@h1",
+                "piece": "R",
+                "position": "h1",
+                "qntPlayed": 0,
+                "square": "h1",
+                "x": 7,
+                "y": 0
+            },
+            "x": 6,
+            "y": 0
+        }]
+    },
+    "getOptionsResult2": {
+        "attacks": [],
+        "nextMovements": [{
+            "x": 5,
+            "y": 0
+        }]
+    },
+    "getOptionsResult3": {
+        "attacks": [],
+        "nextMovements": [{
+            "x": 4,
+            "y": 0
+        }, {
+            "x": 2,
+            "y": 1
+        }, {
+            "x": 2,
+            "y": 0
+        }]
+    },
+    "getOptionsResult4": {
+        "attacks": [{
+            "x": 4,
+            "y": 0
+        }],
+        "nextMovements": [{
+            "x": 4,
+            "y": 1
+        }, {
+            "x": 2,
+            "y": 1
+        }, {
+            "x": 2,
+            "y": 0
+        }]
+    },
+    "getOptionsResult5": {
+        "attacks": [{
+            "x": 3,
+            "y": 1
+        }],
+        "nextMovements": [{
+            "x": 4,
+            "y": 1
+        }, {
+            "x": 2,
+            "y": 1
+        }]
+    }
+}
