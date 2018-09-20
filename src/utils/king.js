@@ -1,6 +1,6 @@
-const general = require('./general');
-const decode = require('../decode');
-const pawn = require('./pawn');
+const general = require('./general')
+const decode = require('../decode')
+const pawn = require('./pawn')
 
 /**
  * Create a king movement or attack for an especific position on the board
@@ -11,30 +11,30 @@ const pawn = require('./pawn');
  * @param {int} col board column
  */
 const getNextMovsAttacks = (pieces, piece, row, col) => {
-    const newX = piece.x - col;
-    const column = general.getColumn(newX);
-    const newY = piece.y - row;
+    const newX = piece.x - col
+    const column = general.getColumn(newX)
+    const newY = piece.y - row
     if (column && general.isBetweenRange(newY)) {
-        const squarePiece = general.findPieceAtPosition(pieces, `${column}${newY+1}`);
+        const squarePiece = general.findPieceAtPosition(pieces, `${column}${newY+1}`)
         if (squarePiece && !general.isPiecesFromSameTeam(squarePiece, piece)) {
             return {
                 attack: {
                     x: newX,
                     y: newY
                 }
-            };
+            }
         } else if (!squarePiece) {
             return {
                 nextMov: {
                     x: newX,
                     y: newY
                 }
-            };
+            }
         }
     }
 
-    return null;
-};
+    return null
+}
 
 /**
  * Create king's next movements and attacks
@@ -42,15 +42,15 @@ const getNextMovsAttacks = (pieces, piece, row, col) => {
  * @param {object} piece decoded piece
  */
 const createMovsAttacks = (pieces, piece) => {
-    const nextMovements = [];
-    const attacks = [];
+    const nextMovements = []
+    const attacks = []
     for (let col = -1; col < 2; col++) {
         for (let row = -1; row < 2; row++) {
-            const result = getNextMovsAttacks(pieces, piece, row, col);
+            const result = getNextMovsAttacks(pieces, piece, row, col)
             if (result && result.nextMov) {
-                nextMovements.push(result.nextMov);
+                nextMovements.push(result.nextMov)
             } else if (result && result.attack) {
-                attacks.push(result.attack);
+                attacks.push(result.attack)
             }
         }
     }
@@ -58,8 +58,8 @@ const createMovsAttacks = (pieces, piece) => {
     return {
         nextMovements,
         attacks
-    };
-};
+    }
+}
 
 /**
  * Add castling movements for kings's next movements
@@ -68,33 +68,33 @@ const createMovsAttacks = (pieces, piece) => {
  * @param {string} type castle side type
  */
 const getCastlingPos = (pieces, kingsYPos, type) => {
-    const rookY = kingsYPos + 1;
-    const rookData = {};
+    const rookY = kingsYPos + 1
+    const rookData = {}
 
     if (type === 'left') {
-        rookData.column = 'a';
-        rookData.hasEmptySpace = !general.findPieceAtPosition(pieces, `b${rookY}`) && !general.findPieceAtPosition(pieces, `c${rookY}`) && !general.findPieceAtPosition(pieces, `d${rookY}`);
-        rookData.nextColumn = 'd';
-        rookData.x = 2;
+        rookData.column = 'a'
+        rookData.hasEmptySpace = !general.findPieceAtPosition(pieces, `b${rookY}`) && !general.findPieceAtPosition(pieces, `c${rookY}`) && !general.findPieceAtPosition(pieces, `d${rookY}`)
+        rookData.nextColumn = 'd'
+        rookData.x = 2
     } else {
-        rookData.column = 'h';
-        rookData.hasEmptySpace = !general.findPieceAtPosition(pieces, `f${rookY}`) && !general.findPieceAtPosition(pieces, `g${rookY}`);
-        rookData.nextColumn = 'f';
-        rookData.x = 6;
+        rookData.column = 'h'
+        rookData.hasEmptySpace = !general.findPieceAtPosition(pieces, `f${rookY}`) && !general.findPieceAtPosition(pieces, `g${rookY}`)
+        rookData.nextColumn = 'f'
+        rookData.x = 6
     }
 
-    const rook = general.findPieceAtPosition(pieces, `${rookData.column}${rookY}`);
+    const rook = general.findPieceAtPosition(pieces, `${rookData.column}${rookY}`)
     if (rook && rook.name.toUpperCase() === 'R' && rook.qntPlayed === 0 && rookData.hasEmptySpace) {
-        rook.nextPos = `${rookData.nextColumn}${rookY}`;
+        rook.nextPos = `${rookData.nextColumn}${rookY}`
         return {
             x: rookData.x,
             y: kingsYPos,
             rookPos: rook
-        };
+        }
     }
 
-    return null;
-};
+    return null
+}
 
 /**
  * Remove all enemy possible attacks (except pawns because their attacks are different than thier movements)
@@ -107,12 +107,12 @@ const removeNextMovsByEnemyMovs = (currNextMovements, enemyPossibleAttacks) =>
         for (const enemy of general.filterByTypeOfPieces(enemyPossibleAttacks,'KQRNB')) {
             for (const enemyMov of enemy.nextMovements) {
                 if (enemyMov.x === nextMom.x && enemyMov.y === nextMom.y) {
-                    return false;
+                    return false
                 }
             }
         }
-        return nextMom;
-    }).filter(Boolean);
+        return nextMom
+    }).filter(Boolean)
 
 /**
  * Remove all enemy pawns possible attacks from king's next movements
@@ -122,9 +122,9 @@ const removeNextMovsByEnemyMovs = (currNextMovements, enemyPossibleAttacks) =>
  */
 const removeNextMovsByEnemyPawsMovs = (pieces, pieceName, currNextMovements) =>
     currNextMovements.map(nextMom => {
-        const foundItem = pawn.getEnemyPawnsAttacks(pieces, general.whatIsEnemyTeam(pieceName)).find(pawnAttack => pawnAttack.x === nextMom.x && pawnAttack.y === nextMom.y);
-        return foundItem ? false : nextMom;
-    }).filter(Boolean);
+        const foundItem = pawn.getEnemyPawnsAttacks(pieces, general.whatIsEnemyTeam(pieceName)).find(pawnAttack => pawnAttack.x === nextMom.x && pawnAttack.y === nextMom.y)
+        return foundItem ? false : nextMom
+    }).filter(Boolean)
 
 /**
  * Get next movements and attacks of king
@@ -134,36 +134,36 @@ const removeNextMovsByEnemyPawsMovs = (pieces, pieceName, currNextMovements) =>
  * @param {object} threateningPos posistion of enemy threatening
  */
 const getOptions = (pieces, piece, enemyPossibleMovs, threateningPos) => {
-    const newPiece = piece.x ? piece : decode.fromPieceDecl(piece.notation);
-    const result = createMovsAttacks(pieces, newPiece);
-    const attacks = result.attacks;
-    let nextMovements = result.nextMovements;
+    const newPiece = piece.x ? piece : decode.fromPieceDecl(piece.notation)
+    const result = createMovsAttacks(pieces, newPiece)
+    const attacks = result.attacks
+    let nextMovements = result.nextMovements
 
     if (!threateningPos && !newPiece.qntPlayed) {
-        const castelingLeft = getCastlingPos(pieces, newPiece.y, 'left');
+        const castelingLeft = getCastlingPos(pieces, newPiece.y, 'left')
         if (castelingLeft) {
-            nextMovements.push(castelingLeft);
+            nextMovements.push(castelingLeft)
         }
-        const castelingRight = getCastlingPos(pieces, newPiece.y, 'right');
+        const castelingRight = getCastlingPos(pieces, newPiece.y, 'right')
         if (castelingRight) {
-            nextMovements.push(castelingRight);
+            nextMovements.push(castelingRight)
         }
     }
 
     if (enemyPossibleMovs && enemyPossibleMovs.length) {
-        nextMovements = removeNextMovsByEnemyMovs(nextMovements, enemyPossibleMovs);
-        nextMovements = removeNextMovsByEnemyPawsMovs(pieces, newPiece.piece, nextMovements);
+        nextMovements = removeNextMovsByEnemyMovs(nextMovements, enemyPossibleMovs)
+        nextMovements = removeNextMovsByEnemyPawsMovs(pieces, newPiece.piece, nextMovements)
     }
 
     return {
         nextMovements,
         attacks
-    };
-};
+    }
+}
 
 let API = {
     getOptions,
-};
+}
 
 if(general.isTestEnv()){
     API = Object.assign({}, API, {
@@ -172,7 +172,7 @@ if(general.isTestEnv()){
         getCastlingPos,
         removeNextMovsByEnemyMovs,
         removeNextMovsByEnemyPawsMovs,
-    });
+    })
 }
 
-module.exports = API;
+module.exports = API

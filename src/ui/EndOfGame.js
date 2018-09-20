@@ -1,5 +1,5 @@
-const React = require('react');
-const PropTypes = require('prop-types');
+const React = require('react')
+const PropTypes = require('prop-types')
 
 class EndOfGame extends React.PureComponent {
 
@@ -12,7 +12,7 @@ class EndOfGame extends React.PureComponent {
             top:'45%',
             fontSize:'45px',
             color:'#0d8dcb'
-        };
+        }
 
         const endOfGameWrapper = content => (
             <div>
@@ -23,7 +23,7 @@ class EndOfGame extends React.PureComponent {
                     {content}
                 </div>
             </div>
-        );
+        )
 
         if(this.props.isCheckmate){
             return endOfGameWrapper(
@@ -32,7 +32,7 @@ class EndOfGame extends React.PureComponent {
                 <span style={{color:this.props.turn === 'B' ? '#d8d8d8' : 'black'}}>
                   {this.props.turn === 'B' ? 'White' : 'Black'}
                 </span>
-              </h2>);
+              </h2>)
         }else if(this.props.isStalemate){
             return endOfGameWrapper(
               <h2>
@@ -40,12 +40,12 @@ class EndOfGame extends React.PureComponent {
                 <span style={{color:this.props.turn === 'B' ? '#d8d8d8' : 'black'}}>
                   {this.props.turn === 'B' ? 'White' : 'Black'}
                 </span>
-              </h2>);
+              </h2>)
         }else if(this.props.isImpossibleCheckmate){
-            return endOfGameWrapper(<h2>The game has finished in a draw</h2>);
+            return endOfGameWrapper(<h2>The game has finished in a draw</h2>)
         }
 
-        return null;
+        return null
     }
 }
 
@@ -55,13 +55,13 @@ EndOfGame.propTypes = {
     isImpossibleCheckmate: PropTypes.bool,
     turn: PropTypes.string,
     children: PropTypes.any,
-};
+}
 
 EndOfGame.defaultProps = {
     isCheckmate: false,
     isStalemate: false,
     isImpossibleCheckmate: false,
     turn: 'W',
-};
+}
 
-module.exports = EndOfGame;
+module.exports = EndOfGame

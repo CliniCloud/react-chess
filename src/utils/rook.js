@@ -44,7 +44,7 @@ const getAttacktNextMov = (pieces, piece, endDir) => {
         }
     }
 
-    return null;
+    return null
 }
 
 /**

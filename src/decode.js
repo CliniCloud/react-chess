@@ -7,12 +7,12 @@ const charCodeOffset = 97
  */
 const fromPieceDecl = pos => {
     if(pos.indexOf('@') === -1 || pos.indexOf('-') === -1){
-        return null;
+        return null
     }
-    const [pieces, square] = pos.split('@');
-    const [piece, qntPlayed] = pieces.split('-');
-    const x = square.toLowerCase().charCodeAt(0) - charCodeOffset;
-    const y = Number(square[1]) - 1;
+    const [pieces, square] = pos.split('@')
+    const [piece, qntPlayed] = pieces.split('-')
+    const x = square.toLowerCase().charCodeAt(0) - charCodeOffset
+    const y = Number(square[1]) - 1
     return {
         x,
         y,
@@ -22,8 +22,8 @@ const fromPieceDecl = pos => {
         name: piece,
         notation: pos,
         position: square
-    };
-};
+    }
+}
 
 /**
  * Get the position in notation (eg: g5)
@@ -31,10 +31,10 @@ const fromPieceDecl = pos => {
  * @param {number} y y piece position
  * @returns {string}
  */
-const fromPosDecl = (x, y) => `${String.fromCharCode(charCodeOffset + x )}${y + 1}`;
+const fromPosDecl = (x, y) => `${String.fromCharCode(charCodeOffset + x )}${y + 1}`
 
 module.exports = {
   fromPieceDecl,
   fromPosDecl,
   charCodeOffset
-};
+}

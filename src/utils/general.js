@@ -1,54 +1,54 @@
-const decode = require('../decode');
+const decode = require('../decode')
 
 /**
  * Check if is a development environment
  */
-const isTestEnv = () => process && process.env.NODE_ENV === 'development';
+const isTestEnv = () => process && process.env.NODE_ENV === 'development'
 
 /**
  * Check if is the game turn of a specific piece
  * @param {string} pieceName piece name (eg: 'p', 'B', 'b', 'K', 'k', 'q')
  * @param {string} turn team who should play (eg: 'W', 'B')
  */
-const isPieceTurn = (pieceName, turn) => (pieceName === pieceName.toUpperCase() && turn === 'W') || (pieceName === pieceName.toLowerCase() && turn === 'B');
+const isPieceTurn = (pieceName, turn) => (pieceName === pieceName.toUpperCase() && turn === 'W') || (pieceName === pieceName.toLowerCase() && turn === 'B')
 
 /**
  * Check if a pawn arrive at the top or bottom of the table
  * @param {string} pieceName piece name (eg: 'p', 'B', 'b', 'K', 'k', 'q')
  * @param {object} position object with x and y attributes
  */
-const hasPawnPieceChange = (pieceName, position) => pieceName.toLowerCase() === 'p' && ((pieceName === pieceName.toUpperCase() && position.y === 0) || (pieceName === pieceName.toLowerCase() && position.y === 7));
+const hasPawnPieceChange = (pieceName, position) => pieceName.toLowerCase() === 'p' && ((pieceName === pieceName.toUpperCase() && position.y === 0) || (pieceName === pieceName.toLowerCase() && position.y === 7))
 
 /**
  * Get the piece team
  * @param {string} pieceName piece name (eg: 'p', 'B', 'b', 'K', 'k', 'q')
  */
-const whatIsMyTeam = pieceName => pieceName === pieceName.toUpperCase() ? 'W' : 'B';
+const whatIsMyTeam = pieceName => pieceName === pieceName.toUpperCase() ? 'W' : 'B'
 
 /**
  * Get the enemy team
  * @param {string} pieceName piece name (eg: 'p', 'B', 'b', 'K', 'k', 'q')
  */
-const whatIsEnemyTeam = pieceName => pieceName === pieceName.toUpperCase() ? 'B' : 'W';
+const whatIsEnemyTeam = pieceName => pieceName === pieceName.toUpperCase() ? 'B' : 'W'
 
 /**
  * Check if the parameter is between the range
  * @param {number} range 
  */
-const isBetweenRange = index => index >= 0 && index <= 7;
+const isBetweenRange = index => index >= 0 && index <= 7
 
 /**
  * Get which letter represent the column
  * @param {number} xPosition piece x position
  */
-const getColumn = xPosition => isBetweenRange(xPosition) ? String.fromCharCode(decode.charCodeOffset + xPosition) : null;
+const getColumn = xPosition => isBetweenRange(xPosition) ? String.fromCharCode(decode.charCodeOffset + xPosition) : null
 
 /**
  * Compare if the pieces are from the same team
  * @param {object} pieceA piece object with name
  * @param {object} pieceB piece object with name
  */
-const isPiecesFromSameTeam = (pieceA, pieceB) => (pieceA.name === pieceA.name.toLowerCase() && pieceB.name === pieceB.name.toLowerCase()) || (pieceA.name === pieceA.name.toUpperCase() && pieceB.name === pieceB.name.toUpperCase());
+const isPiecesFromSameTeam = (pieceA, pieceB) => (pieceA.name === pieceA.name.toLowerCase() && pieceB.name === pieceB.name.toLowerCase()) || (pieceA.name === pieceA.name.toUpperCase() && pieceB.name === pieceB.name.toUpperCase())
 
 /**
  * Get decoded piece with more information
@@ -57,7 +57,7 @@ const isPiecesFromSameTeam = (pieceA, pieceB) => (pieceA.name === pieceA.name.to
  * @param {string} position piece position (eg: g3)
  */
 const getPieceObject = (piece, index, pos) =>  {
-    const position = !pos || pos.length > 2 ? piece.substr(piece.indexOf('@') + 1) : pos;
+    const position = !pos || pos.length > 2 ? piece.substr(piece.indexOf('@') + 1) : pos
     return Object.assign(
         {},
         decode.fromPieceDecl(piece),
@@ -67,8 +67,8 @@ const getPieceObject = (piece, index, pos) =>  {
             index,
             position
         }
-    );
-};
+    )
+}
 
 /**
  * 
@@ -76,24 +76,24 @@ const getPieceObject = (piece, index, pos) =>  {
  * @param {string} pos piece position
  */
 const findPieceAtPosition = (pieces, pos) => {
-    const newPos = pos.length > 2 ? pos.substr(pos.indexOf('@') + 1) : pos;
+    const newPos = pos.length > 2 ? pos.substr(pos.indexOf('@') + 1) : pos
 
     for (let i = 0; i < pieces.length; i++) {
-        const piece = pieces[i];
+        const piece = pieces[i]
         if (piece.indexOf(newPos) ===  piece.indexOf('@') + 1) {
-            return getPieceObject(piece, i, newPos);
+            return getPieceObject(piece, i, newPos)
         }
     }
 
-    return null;
-};
+    return null
+}
 
 /**
  * Filter the list of pieces by pieces name
  * @param {array} pieces list of pieces (object)
  * @param {string} type pieces name (eg: KQRNB)
  */
-const filterByTypeOfPieces  = (pieces, type) => pieces.map(piece => type.toUpperCase().indexOf(piece.name.toUpperCase()) > -1 ? piece : false).filter(Boolean);
+const filterByTypeOfPieces  = (pieces, type) => pieces.map(piece => type.toUpperCase().indexOf(piece.name.toUpperCase()) > -1 ? piece : false).filter(Boolean)
 
 /**
  * Compare if the position where the piece was drag out has a same team piece
@@ -102,9 +102,9 @@ const filterByTypeOfPieces  = (pieces, type) => pieces.map(piece => type.toUpper
  * @param {string} dragToPos position (eg: e4)
  */
 const isSameTeamPiece = (pieces, draggingPiece, dragToPos) => {
-    const positionedPiece = findPieceAtPosition(pieces, dragToPos);
-    return positionedPiece && isPiecesFromSameTeam(draggingPiece, positionedPiece);
-};
+    const positionedPiece = findPieceAtPosition(pieces, dragToPos)
+    return positionedPiece && isPiecesFromSameTeam(draggingPiece, positionedPiece)
+}
 
 /**
  * Check if the movement choose by user is among the piece allowed movements and attacks
@@ -113,19 +113,19 @@ const isSameTeamPiece = (pieces, draggingPiece, dragToPos) => {
  * @param {object} piece decoded piece object
  */
 const isMovementValid = (nextPossMov, attacks, piece) => {
-    const y = 7 - piece.y;
-    const foundMov = nextPossMov.find(mov => mov.x === piece.x && mov.y === y);
+    const y = 7 - piece.y
+    const foundMov = nextPossMov.find(mov => mov.x === piece.x && mov.y === y)
     if(foundMov){
-        return foundMov;
+        return foundMov
     }
 
-    const foundAttack = attacks.find(attack => attack.x === piece.x && attack.y === y);
+    const foundAttack = attacks.find(attack => attack.x === piece.x && attack.y === y)
     if(foundAttack){
         return foundAttack
     }
 
-    return null;
-};
+    return null
+}
 
 /**
  * Get all pieces from a team
@@ -135,13 +135,13 @@ const isMovementValid = (nextPossMov, attacks, piece) => {
 const getPiecesFromTeam = (pieces, team) => 
      pieces.map(item => {
         if (team.toUpperCase() === 'W' && item[0].toUpperCase() === item[0]) {
-            return item;
+            return item
         } else if (team.toUpperCase() === 'B' && item[0].toLowerCase() === item[0]) {
-            return item;
+            return item
         }
         
-        return null;
-    }).filter(Boolean);
+        return null
+    }).filter(Boolean)
 
 /**
  * Get the king threatening position in case it is in the piece's allowed attacks
@@ -150,19 +150,19 @@ const getPiecesFromTeam = (pieces, team) =>
  */
 const getThreateningAttack = (attacks, threateningPos) => {
     if (threateningPos) {
-        const threathPos = decode.fromPieceDecl(threateningPos);
-        const newAttacks = [];
+        const threathPos = decode.fromPieceDecl(threateningPos)
+        const newAttacks = []
         for (const attack of attacks) {
             if (attack.x === threathPos.x && attack.y === threathPos.y) {
-                newAttacks.push(attack);
-                break;
+                newAttacks.push(attack)
+                break
             }
         }
         
-        return newAttacks;
+        return newAttacks
     }
 
-    return null;
+    return null
 }
 
 module.exports = {
@@ -181,4 +181,4 @@ module.exports = {
     isMovementValid,
     getPiecesFromTeam,
     getThreateningAttack
-};
+}

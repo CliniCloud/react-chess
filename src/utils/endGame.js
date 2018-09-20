@@ -1,6 +1,6 @@
-const predictions = require('./predictions');
-const general = require('./general');
-const decode = require('../decode');
+const predictions = require('./predictions')
+const general = require('./general')
+const decode = require('../decode')
 
 /**
  * Check if the game ended in a checkmate
@@ -10,11 +10,11 @@ const decode = require('../decode');
  * @param {object} inCheck object with attrs about the king
  */
 const isCheckmate = (pieces, turn, enemyTeam) => {
-    const teamPieces = general.getPiecesFromTeam(pieces, turn);
-    const enemyKing = predictions.getKingPos(pieces, enemyTeam);
+    const teamPieces = general.getPiecesFromTeam(pieces, turn)
+    const enemyKing = predictions.getKingPos(pieces, enemyTeam)
     const teamMovs = teamPieces.map(piece => {
-        const decodedPiece = general.getPieceObject(piece, null, null);
-        const nextMovsAtt = predictions.getOptionsByName(pieces, decodedPiece, null, null);
+        const decodedPiece = general.getPieceObject(piece, null, null)
+        const nextMovsAtt = predictions.getOptionsByName(pieces, decodedPiece, null, null)
         if (nextMovsAtt.nextMovements && nextMovsAtt.nextMovements.length) {
             return {
                 nextMovements: nextMovsAtt.nextMovements,
@@ -22,21 +22,21 @@ const isCheckmate = (pieces, turn, enemyTeam) => {
             }
         }
         return false
-    }).filter(Boolean);
+    }).filter(Boolean)
     
-    const enemyKingMovs = predictions.getOptionsByName(pieces, enemyKing, teamMovs);
+    const enemyKingMovs = predictions.getOptionsByName(pieces, enemyKing, teamMovs)
     const noThreatenedMov = enemyKingMovs.nextMovements.find(nextMovs => predictions.willTheKingBeThreating(pieces, enemyKing, nextMovs).isKingThreatened === false)
     if (noThreatenedMov) {
-        return false;
+        return false
     }
 
     const noThreatenedAttack = enemyKingMovs.attacks.find(attack => predictions.willTheKingBeThreating(pieces, enemyKing, attack).isKingThreatened === false)
     if (noThreatenedAttack) {
-        return false;
+        return false
     }
 
-    return true;
-};
+    return true
+}
 
 /**
  * Check if the game ended in a stalemate
@@ -46,22 +46,22 @@ const isCheckmate = (pieces, turn, enemyTeam) => {
  */
 const isStalemate = (pieces, turn, enemyTeam) => {
     const enemyNextMovs = predictions.getEnemyNextMovs(pieces, enemyTeam)
-    const teamPieces = general.getPiecesFromTeam(pieces, enemyTeam);
+    const teamPieces = general.getPiecesFromTeam(pieces, enemyTeam)
     for (const piece of teamPieces) {
-        const decodedPiece = decode.fromPieceDecl(piece);
-        const result = predictions.getOptionsByName(pieces, decodedPiece, enemyNextMovs);
+        const decodedPiece = decode.fromPieceDecl(piece)
+        const result = predictions.getOptionsByName(pieces, decodedPiece, enemyNextMovs)
         const noThreatenedMov = result.nextMovements.find(movement => predictions.willTheKingBeThreating(pieces, decodedPiece, movement).isKingThreatened === false)
         if (noThreatenedMov) {
-            return false;
+            return false
         }
         
-        const noThreatenedAttack = result.attacks.find(attack => predictions.willTheKingBeThreating(pieces, decodedPiece, attack).isKingThreatened === false);
+        const noThreatenedAttack = result.attacks.find(attack => predictions.willTheKingBeThreating(pieces, decodedPiece, attack).isKingThreatened === false)
         if (noThreatenedAttack) {
-            return false;
+            return false
         }
     }
 
-    return true;
+    return true
 }
 
 /**
@@ -69,7 +69,7 @@ const isStalemate = (pieces, turn, enemyTeam) => {
  * @param {array} pieces array of string pieces
  * @param {string} name piece name
  */
-const getPieceByName = (pieces, name) => pieces.find(piece => piece[0] === name);
+const getPieceByName = (pieces, name) => pieces.find(piece => piece[0] === name)
 
 /**
  * Check if it still possible any player win with a checkmate
@@ -78,7 +78,7 @@ const getPieceByName = (pieces, name) => pieces.find(piece => piece[0] === name)
 const isImpossibleCheckmate = pieces =>
         (pieces.length === 2)
         || ( pieces.length === 3 && ( !!getPieceByName(pieces, 'B') || !!getPieceByName(pieces, 'b') || !!getPieceByName(pieces, 'N') || !!getPieceByName(pieces, 'n') ) )
-        || ( pieces.length === 4 && !!getPieceByName(pieces, 'B') && !!getPieceByName(pieces, 'b') );
+        || ( pieces.length === 4 && !!getPieceByName(pieces, 'B') && !!getPieceByName(pieces, 'b') )
 
 
 /**
@@ -87,30 +87,30 @@ const isImpossibleCheckmate = pieces =>
  * @param {string} turn player playing
  */
 const isGameFinished = (pieces, turn, check) => {
-    const enemyTeam = turn === 'W' ? 'B' : 'W';
-    const inCheck = check ? check : predictions.getThreatenedKingData(pieces, enemyTeam);
-    let checkmate = false;
-    let stalemate = false;
-    let impossibleCheckmate = false;
+    const enemyTeam = turn === 'W' ? 'B' : 'W'
+    const inCheck = check ? check : predictions.getThreatenedKingData(pieces, enemyTeam)
+    let checkmate = false
+    let stalemate = false
+    let impossibleCheckmate = false
 
     if (inCheck.isKingThreatened && isCheckmate(pieces, turn, enemyTeam)) {
-        checkmate = true;
+        checkmate = true
     } else if (!inCheck.isKingThreatened && isStalemate(pieces, turn, enemyTeam)) {
-        stalemate = true;
+        stalemate = true
     } else if (isImpossibleCheckmate(pieces)) {
-        impossibleCheckmate = true;
+        impossibleCheckmate = true
     }
 
     return {
         isCheckmate: checkmate,
         isStalemate: stalemate,
         isImpossibleCheckmate: impossibleCheckmate
-    };
+    }
 }
 
 let API = {
     isGameFinished
-};
+}
 
 if (general.isTestEnv()) {
     API = Object.assign({}, API, {
@@ -118,7 +118,7 @@ if (general.isTestEnv()) {
         isStalemate,
         getPieceByName,
         isImpossibleCheckmate,
-    });
+    })
 }
 
-module.exports = API;
+module.exports = API

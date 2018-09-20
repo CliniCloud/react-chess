@@ -1,4 +1,4 @@
-const general = require('./general');
+const general = require('./general')
 
 /**
  * Create movement and attack based in board position
@@ -10,7 +10,7 @@ const getAttacktNextMov = (pieces, piece, endDir) => {
     const column = general.getColumn(piece.col)
 
     if (column) {
-        const squarePiece = general.findPieceAtPosition(pieces, `${column}${piece.row+1}`);
+        const squarePiece = general.findPieceAtPosition(pieces, `${column}${piece.row+1}`)
         if (squarePiece) {
             if (!general.isPiecesFromSameTeam(squarePiece, piece)) {
                 return {
@@ -23,7 +23,7 @@ const getAttacktNextMov = (pieces, piece, endDir) => {
                             [piece.side]: true
                         }
                     ),
-                };
+                }
             }
 
             return {
@@ -32,7 +32,7 @@ const getAttacktNextMov = (pieces, piece, endDir) => {
                         [piece.side]: true
                     }
                 ),
-            };
+            }
         }
 
         return {
@@ -41,45 +41,45 @@ const getAttacktNextMov = (pieces, piece, endDir) => {
                 y: piece.row
             },
             endDir,
-        };
+        }
     }
 
-    return null;
-};
+    return null
+}
 
 /**
  * Validate x and y position are valid on the board limits
  * @param {object} piece decoded piece
  */
-const isPositionValid = piece => (piece.x !== piece.col || piece.y !== piece.row) && piece.row >= 0 && piece.row < 8 && piece.col >= 0 && piece.col < 8;
+const isPositionValid = piece => (piece.x !== piece.col || piece.y !== piece.row) && piece.row >= 0 && piece.row < 8 && piece.col >= 0 && piece.col < 8
 
 /**
  * Validate if x and y are inside of bishop top left movements and attacks
  * @param {object} piece decoded piece
  * @param {object} endDir flag container to check if movements for especific side finished
  */
-const isTopLeftPosition = (piece, endDir) => piece.side === 'topLeft' && !endDir.topLeft && piece.col < piece.x && piece.row > piece.y;
+const isTopLeftPosition = (piece, endDir) => piece.side === 'topLeft' && !endDir.topLeft && piece.col < piece.x && piece.row > piece.y
 
 /**
  * Validate if x and y are inside of bishop down left movements and attacks
  * @param {object} piece decoded piece
  * @param {object} endDir flag container to check if movements for especific side finished
  */
-const isDownLeftPosition = (piece, endDir) => piece.side === 'downLeft' && !endDir.downLeft && piece.row < piece.y && piece.col < piece.x;
+const isDownLeftPosition = (piece, endDir) => piece.side === 'downLeft' && !endDir.downLeft && piece.row < piece.y && piece.col < piece.x
 
 /**
  * Validate if x and y are inside of bishop down right movements and attacks
  * @param {object} piece decoded piece
  * @param {object} endDir flag container to check if movements for especific side finished
  */
-const isDownRightPosition = (piece, endDir) => piece.side === 'downRight' && !endDir.downRight && piece.col > piece.x && piece.row < piece.y;
+const isDownRightPosition = (piece, endDir) => piece.side === 'downRight' && !endDir.downRight && piece.col > piece.x && piece.row < piece.y
 
 /**
  * Validate if x and y are inside of bishop top right movements and attacks
  * @param {object} piece decoded piece
  * @param {object} endDir flag container to check if movements for especific side finished
  */
-const isTopRightPosition = (piece, endDir) => piece.side === 'topRight' && !endDir.topRight && piece.row > piece.y && piece.col > piece.x;
+const isTopRightPosition = (piece, endDir) => piece.side === 'topRight' && !endDir.topRight && piece.row > piece.y && piece.col > piece.x
 
 /**
  * Generate movements and attacks per side
@@ -92,17 +92,17 @@ const isTopRightPosition = (piece, endDir) => piece.side === 'topRight' && !endD
 const generateBishopPos = (pieces, piece, endDir, index, side) => {
     const newPiece = Object.assign({}, piece, {
         side,
-    });
-    newPiece.col = side === 'topLeft' ? piece.x - index : piece.x + index;
-    newPiece.row = side === 'downRight' ? piece.y - index : piece.y + index;
+    })
+    newPiece.col = side === 'topLeft' ? piece.x - index : piece.x + index
+    newPiece.row = side === 'downRight' ? piece.y - index : piece.y + index
 
     if (isPositionValid(newPiece)) {
         if (isTopLeftPosition(newPiece, endDir) || isDownRightPosition(newPiece, endDir) || isTopRightPosition(newPiece, endDir) || isDownLeftPosition(newPiece, endDir)) {
-            return getAttacktNextMov(pieces, newPiece, endDir);
+            return getAttacktNextMov(pieces, newPiece, endDir)
         }
     }
 
-    return null;
+    return null
 }
 
 /**
@@ -116,7 +116,7 @@ const compareEndDirs = (oldEndDir, newEndDir) => {
         topRight: oldEndDir.topRight || newEndDir.topRight,
         downRight: oldEndDir.downRight || newEndDir.downRight,
         downLeft: oldEndDir.downLeft || newEndDir.downLeft
-    };
+    }
 }
 
 /**
@@ -126,50 +126,50 @@ const compareEndDirs = (oldEndDir, newEndDir) => {
  * @param {object} threateningPos enemyś threatening king position
  */
 const getOptions = (pieces, piece, threateningPos) => {
-    const nextMovements = [];
-    let attacks = [];
+    const nextMovements = []
+    let attacks = []
     let endedDirection = {
         topLeft: false,
         topRight: false,
         downRight: false,
         downLeft: false
-    };
+    }
 
     for (let i = 0; i < 8; i++) {
-        const topRight = generateBishopPos(pieces, piece, endedDirection, i, 'topRight');
-        const topLeft = generateBishopPos(pieces, piece, endedDirection, i, 'topLeft');
-        const downRight = generateBishopPos(pieces, piece, endedDirection, i, 'downRight');
-        const downLeft = generateBishopPos(pieces, piece, endedDirection, i * -1, 'downLeft');
+        const topRight = generateBishopPos(pieces, piece, endedDirection, i, 'topRight')
+        const topLeft = generateBishopPos(pieces, piece, endedDirection, i, 'topLeft')
+        const downRight = generateBishopPos(pieces, piece, endedDirection, i, 'downRight')
+        const downLeft = generateBishopPos(pieces, piece, endedDirection, i * -1, 'downLeft')
 
         for (const item of [topRight, downLeft, topLeft, downRight]) {
             if (item) {
                 if (item.nextMov) {
-                    nextMovements.push(item.nextMov);
+                    nextMovements.push(item.nextMov)
                 }
                 if (item.attack) {
-                    attacks.push(item.attack);
+                    attacks.push(item.attack)
                 }
                 if (item.endDir) {
-                    endedDirection = compareEndDirs(endedDirection, item.endDir);
+                    endedDirection = compareEndDirs(endedDirection, item.endDir)
                 }
             }
         }
     }
 
-    const threatAttacks = general.getThreateningAttack(attacks, threateningPos);
+    const threatAttacks = general.getThreateningAttack(attacks, threateningPos)
     if (threatAttacks) {
-        attacks = threatAttacks;
+        attacks = threatAttacks
     }
 
     return {
         nextMovements,
         attacks
-    };
+    }
 }
 
 let API = {
     getOptions
-};
+}
 
 if (general.isTestEnv()) {
     API = Object.assign({}, API, {
@@ -181,7 +181,7 @@ if (general.isTestEnv()) {
         isTopRightPosition,
         generateBishopPos,
         compareEndDirs,
-    });
+    })
 }
 
-module.exports = API;
+module.exports = API
